@@ -1,0 +1,11 @@
+# Godot 4
+.godot/
+
+# Godot 3
+.import/
+
+# Mono / C#
+.mono/
+
+# Optional
+export_presets.cfg
