@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b0pmte6kgxlwa"]
+
+[ext_resource type="Texture2D" uid="uid://2u38rwof5lm7" path="res://icon.svg" id="2_4iufg"]
+[ext_resource type="Script" uid="uid://rrp6c4b0oynh" path="res://Script/Collecting_garbage.gd" id="2_g6r6q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4optt"]
+size = Vector2(64, 64)
+
+[node name="Garbage" type="Area2D" unique_id=422682489]
+script = ExtResource("2_g6r6q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1603156407]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_4iufg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=703192026]
+shape = SubResource("RectangleShape2D_4optt")
