@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bgxanngqlwv8"]
+
+[ext_resource type="Texture2D" uid="uid://do6b7164wywe6" path="res://Assets/Kitchen and living room/Normal Furniture.png" id="1_dco1u"]
+[ext_resource type="Texture2D" uid="uid://scm1t4akdlho" path="res://Assets/Kitchen and living room/Distorded Furniture.png" id="2_prk68"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iove8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dco1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_prk68")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=328266671]
+sprite_frames = SubResource("SpriteFrames_iove8")

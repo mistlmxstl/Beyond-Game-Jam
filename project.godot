@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="beyond game jam"
-run/main_scene="uid://cj6a1u6vurn7f"
+run/main_scene="uid://bfpttyqqdyeyj"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=773
+window/size/viewport_height=600
 
 [input]
 

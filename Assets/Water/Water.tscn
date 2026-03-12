@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dk7x2i6d6ckl5"]
+
+[ext_resource type="Texture2D" uid="uid://t703777idjtj" path="res://Assets/Water/Water_spritesheet.png" id="1_woxes"]
+[ext_resource type="Script" uid="uid://bvna503nhebx4" path="res://Script/water.gd" id="2_ppbpf"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1097336433]
+texture = ExtResource("1_woxes")
+region_enabled = true
+region_rect = Rect2(0, 0, 92, 92)
+script = ExtResource("2_ppbpf")

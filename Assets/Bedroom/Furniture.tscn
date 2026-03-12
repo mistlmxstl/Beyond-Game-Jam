@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d4ne07e2dk0kh"]
+
+[ext_resource type="Texture2D" uid="uid://dtb3m3ma4ifd2" path="res://Assets/Bedroom/Furniture_normal.png" id="1_l1l2n"]
+[ext_resource type="Texture2D" uid="uid://dcmhdsa2ecurw" path="res://Assets/Bedroom/Furniture_Distord.png" id="2_khbnw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qufym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l1l2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_khbnw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=364292589]
+sprite_frames = SubResource("SpriteFrames_qufym")

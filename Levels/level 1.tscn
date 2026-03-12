@@ -1,0 +1,238 @@
+[gd_scene format=3 uid="uid://cj6a1u6vurn7f"]
+
+[ext_resource type="Script" uid="uid://c37b4c1pcolal" path="res://Script/game_manager.gd" id="1_7cv3k"]
+[ext_resource type="PackedScene" uid="uid://b0pmte6kgxlwa" path="res://Assets/Garbage/Garbage.tscn" id="1_7moo8"]
+[ext_resource type="Script" uid="uid://4jhntrxeocxe" path="res://Script/level_1.gd" id="1_p48sa"]
+[ext_resource type="Texture2D" uid="uid://davigw055rqob" path="res://Assets/Bedroom/Background_bedroom.png" id="2_7moo8"]
+[ext_resource type="PackedScene" uid="uid://d4ne07e2dk0kh" path="res://Assets/Bedroom/Furniture.tscn" id="4_a63mx"]
+[ext_resource type="Texture2D" uid="uid://3xfqohgbf4sl" path="res://Assets/UI/Care button.png" id="5_1bp41"]
+[ext_resource type="Texture2D" uid="uid://bv0bglu7fn52y" path="res://Assets/UI/Trash button.png" id="5_oalwn"]
+[ext_resource type="Texture2D" uid="uid://1ll0o2l4sd0x" path="res://Assets/UI/Mop button.png" id="6_bu6x3"]
+[ext_resource type="PackedScene" uid="uid://dk7x2i6d6ckl5" path="res://Assets/Water/Water.tscn" id="7_bu6x3"]
+
+[node name="Level 1" type="Node2D" unique_id=740281537]
+script = ExtResource("1_p48sa")
+
+[node name="GameManager" type="Node" parent="." unique_id=1042391684]
+unique_name_in_owner = true
+script = ExtResource("1_7cv3k")
+
+[node name="Care button" type="HBoxContainer" parent="." unique_id=1473665786]
+z_index = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 534.0
+offset_top = 509.0
+offset_right = 672.0
+offset_bottom = 560.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.685, 1.685)
+theme_override_constants/separation = 3
+
+[node name="Care" type="Button" parent="Care button" unique_id=811701530]
+layout_mode = 2
+icon = ExtResource("5_1bp41")
+icon_alignment = 1
+
+[node name="Cleaning tools buttons" type="HBoxContainer" parent="." unique_id=732373991]
+z_index = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 613.0
+offset_top = 509.0
+offset_right = 704.0
+offset_bottom = 560.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.685, 1.685)
+theme_override_constants/separation = 3
+
+[node name="Mop" type="Button" parent="Cleaning tools buttons" unique_id=554461576]
+layout_mode = 2
+icon = ExtResource("6_bu6x3")
+icon_alignment = 1
+
+[node name="Trash" type="Button" parent="Cleaning tools buttons" unique_id=1730487245]
+layout_mode = 2
+icon = ExtResource("5_oalwn")
+icon_alignment = 1
+
+[node name="Trash" type="Node" parent="." unique_id=754426353]
+
+[node name="Garbage" parent="Trash" unique_id=422682489 instance=ExtResource("1_7moo8")]
+position = Vector2(577, 151)
+
+[node name="Garbage35" parent="Trash" unique_id=564513714 instance=ExtResource("1_7moo8")]
+position = Vector2(573, 108)
+
+[node name="Garbage36" parent="Trash" unique_id=1173884310 instance=ExtResource("1_7moo8")]
+position = Vector2(607, 114)
+
+[node name="Garbage2" parent="Trash" unique_id=713419458 instance=ExtResource("1_7moo8")]
+position = Vector2(189, 132)
+
+[node name="Garbage3" parent="Trash" unique_id=112721293 instance=ExtResource("1_7moo8")]
+position = Vector2(243, 145)
+
+[node name="Garbage4" parent="Trash" unique_id=381003542 instance=ExtResource("1_7moo8")]
+position = Vector2(181, 257)
+
+[node name="Garbage5" parent="Trash" unique_id=971044697 instance=ExtResource("1_7moo8")]
+position = Vector2(652, 131)
+
+[node name="Garbage6" parent="Trash" unique_id=1363524683 instance=ExtResource("1_7moo8")]
+position = Vector2(749, 119)
+
+[node name="Garbage7" parent="Trash" unique_id=467184676 instance=ExtResource("1_7moo8")]
+position = Vector2(711, 146)
+
+[node name="Garbage8" parent="Trash" unique_id=785564249 instance=ExtResource("1_7moo8")]
+position = Vector2(744, 187)
+
+[node name="Garbage37" parent="Trash" unique_id=497318553 instance=ExtResource("1_7moo8")]
+position = Vector2(721, 230)
+
+[node name="Garbage38" parent="Trash" unique_id=62429877 instance=ExtResource("1_7moo8")]
+position = Vector2(494, 139)
+
+[node name="Garbage39" parent="Trash" unique_id=954164319 instance=ExtResource("1_7moo8")]
+position = Vector2(525, 226)
+
+[node name="Garbage9" parent="Trash" unique_id=1744002823 instance=ExtResource("1_7moo8")]
+position = Vector2(213, 409)
+
+[node name="Garbage10" parent="Trash" unique_id=1437631514 instance=ExtResource("1_7moo8")]
+position = Vector2(233, 455)
+
+[node name="Garbage33" parent="Trash" unique_id=595818242 instance=ExtResource("1_7moo8")]
+position = Vector2(207, 482)
+
+[node name="Garbage34" parent="Trash" unique_id=919646514 instance=ExtResource("1_7moo8")]
+position = Vector2(193, 515)
+
+[node name="Garbage11" parent="Trash" unique_id=1926041971 instance=ExtResource("1_7moo8")]
+position = Vector2(103, 454)
+
+[node name="Garbage30" parent="Trash" unique_id=253808489 instance=ExtResource("1_7moo8")]
+position = Vector2(95, 483)
+
+[node name="Garbage31" parent="Trash" unique_id=1545248583 instance=ExtResource("1_7moo8")]
+position = Vector2(45, 341)
+
+[node name="Garbage32" parent="Trash" unique_id=590755796 instance=ExtResource("1_7moo8")]
+position = Vector2(88, 362)
+
+[node name="Garbage12" parent="Trash" unique_id=1209129230 instance=ExtResource("1_7moo8")]
+position = Vector2(30, 454)
+
+[node name="Garbage13" parent="Trash" unique_id=2093085440 instance=ExtResource("1_7moo8")]
+position = Vector2(292, 564)
+
+[node name="Garbage14" parent="Trash" unique_id=624806669 instance=ExtResource("1_7moo8")]
+position = Vector2(356, 502)
+
+[node name="Garbage15" parent="Trash" unique_id=327271998 instance=ExtResource("1_7moo8")]
+position = Vector2(700, 312)
+
+[node name="Garbage16" parent="Trash" unique_id=1616568537 instance=ExtResource("1_7moo8")]
+position = Vector2(730, 346)
+
+[node name="Garbage17" parent="Trash" unique_id=1343054901 instance=ExtResource("1_7moo8")]
+position = Vector2(658, 375)
+
+[node name="Garbage18" parent="Trash" unique_id=205241463 instance=ExtResource("1_7moo8")]
+position = Vector2(377, 319)
+
+[node name="Garbage19" parent="Trash" unique_id=1348085556 instance=ExtResource("1_7moo8")]
+position = Vector2(416, 358)
+
+[node name="Garbage20" parent="Trash" unique_id=424359480 instance=ExtResource("1_7moo8")]
+position = Vector2(454, 128)
+
+[node name="Garbage21" parent="Trash" unique_id=2086852381 instance=ExtResource("1_7moo8")]
+position = Vector2(376, 64)
+
+[node name="Garbage22" parent="Trash" unique_id=724793314 instance=ExtResource("1_7moo8")]
+position = Vector2(299, 93)
+
+[node name="Garbage23" parent="Trash" unique_id=692494729 instance=ExtResource("1_7moo8")]
+position = Vector2(299, 93)
+
+[node name="Garbage24" parent="Trash" unique_id=205105213 instance=ExtResource("1_7moo8")]
+position = Vector2(55, 157)
+
+[node name="Garbage25" parent="Trash" unique_id=1763393713 instance=ExtResource("1_7moo8")]
+position = Vector2(101, 180)
+
+[node name="Garbage26" parent="Trash" unique_id=686281386 instance=ExtResource("1_7moo8")]
+position = Vector2(727, 482)
+
+[node name="Garbage27" parent="Trash" unique_id=3356091 instance=ExtResource("1_7moo8")]
+position = Vector2(569, 429)
+
+[node name="Garbage28" parent="Trash" unique_id=1105873859 instance=ExtResource("1_7moo8")]
+position = Vector2(292, 314)
+
+[node name="Garbage29" parent="Trash" unique_id=1819266192 instance=ExtResource("1_7moo8")]
+position = Vector2(292, 314)
+
+[node name="Water" type="Node" parent="." unique_id=1546201589]
+
+[node name="Sprite2D" parent="Water" unique_id=1097336433 instance=ExtResource("7_bu6x3")]
+z_index = -2
+position = Vector2(160, 310)
+
+[node name="Sprite2D8" parent="Water" unique_id=1794895870 instance=ExtResource("7_bu6x3")]
+z_index = -2
+position = Vector2(167, 581)
+
+[node name="Sprite2D2" parent="Water" unique_id=245029872 instance=ExtResource("7_bu6x3")]
+z_index = -2
+position = Vector2(668, 246)
+
+[node name="Sprite2D3" parent="Water" unique_id=281412525 instance=ExtResource("7_bu6x3")]
+z_index = -2
+position = Vector2(518, 529)
+
+[node name="Sprite2D4" parent="Water" unique_id=1664173507 instance=ExtResource("7_bu6x3")]
+z_index = -2
+position = Vector2(268, 487)
+
+[node name="Sprite2D6" parent="Water" unique_id=98289886 instance=ExtResource("7_bu6x3")]
+z_index = -2
+position = Vector2(785, 366)
+
+[node name="Sprite2D7" parent="Water" unique_id=2114366319 instance=ExtResource("7_bu6x3")]
+z_index = -2
+position = Vector2(259, 224)
+
+[node name="Sprite2D9" parent="Water" unique_id=1090454693 instance=ExtResource("7_bu6x3")]
+position = Vector2(519, 336)
+
+[node name="Sprite2D10" parent="Water" unique_id=146930673 instance=ExtResource("7_bu6x3")]
+position = Vector2(380, 419)
+
+[node name="Environment" type="Node" parent="." unique_id=1469056383]
+
+[node name="Furnitures" parent="Environment" unique_id=364292589 instance=ExtResource("4_a63mx")]
+z_index = -1
+position = Vector2(386.75, 299.5)
+scale = Vector2(1.7840647, 1.7827381)
+
+[node name="Bg" type="TextureRect" parent="Environment" unique_id=267974231]
+z_index = -3
+offset_right = 773.2143
+offset_bottom = 600.0
+mouse_filter = 2
+texture = ExtResource("2_7moo8")
+
+[connection signal="pressed" from="Care button/Care" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Cleaning tools buttons/Mop" to="." method="_on_mop_pressed"]
+[connection signal="pressed" from="Cleaning tools buttons/Trash" to="." method="_on_trash_pressed"]

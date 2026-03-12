@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b0pmte6kgxlwa"]
+
+[ext_resource type="Script" uid="uid://hyaocff2x0g4" path="res://Script/garbage.gd" id="1_l8ncc"]
+[ext_resource type="Texture2D" uid="uid://cwbeoc5exu3x4" path="res://Assets/Garbage/Garbage_spritesheet.png" id="1_ug3po"]
+
+[node name="Garbage" type="Sprite2D" unique_id=564513714 groups=["Pickable"]]
+texture = ExtResource("1_ug3po")
+region_enabled = true
+region_rect = Rect2(0, 0, 50, 50)
+script = ExtResource("1_l8ncc")
