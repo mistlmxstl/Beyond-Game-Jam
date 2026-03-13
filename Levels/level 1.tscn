@@ -9,6 +9,24 @@
 [ext_resource type="Texture2D" uid="uid://bv0bglu7fn52y" path="res://Assets/UI/Trash button.png" id="5_oalwn"]
 [ext_resource type="Texture2D" uid="uid://1ll0o2l4sd0x" path="res://Assets/UI/Mop button.png" id="6_bu6x3"]
 [ext_resource type="PackedScene" uid="uid://dk7x2i6d6ckl5" path="res://Assets/Water/Water.tscn" id="7_bu6x3"]
+[ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_365w1"]
+[ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="10_n48tk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01go3"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfol3"]
+bg_color = Color(0.8901961, 0.21960784, 0.21960784, 1)
+border_color = Color(0.92116004, 0.7523857, 0.7564273, 1)
+corner_detail = 1
 
 [node name="Level 1" type="Node2D" unique_id=740281537]
 script = ExtResource("1_p48sa")
@@ -235,28 +253,22 @@ texture = ExtResource("2_7moo8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1416021520]
 
-[node name="ToolNotification" type="Label" parent="CanvasLayer" unique_id=1249465842]
-offset_left = 428.0
-offset_top = 11.0
-offset_right = 533.0
-offset_bottom = 50.0
-theme_override_colors/font_color = Color(0.81960785, 0.6862745, 0.81960785, 0.9411765)
-theme_override_font_sizes/font_size = 15
-text = "Mop equipped"
-horizontal_alignment = 1
-
 [node name="SanityBar" type="ProgressBar" parent="CanvasLayer" unique_id=833040366]
-offset_right = 4.0
-offset_bottom = 27.0
-max_value = 30.0
+offset_left = 35.0
+offset_top = 24.0
+offset_right = 289.0
+offset_bottom = 45.5
+theme_override_fonts/font = ExtResource("10_n48tk")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/background = SubResource("StyleBoxFlat_01go3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qfol3")
+step = 10.0
+value = 100.0
 
-[node name="SanityLabel" type="Label" parent="CanvasLayer" unique_id=894058356]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="DistortionOverlay" type="ColorRect" parent="CanvasLayer" unique_id=1317681800]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Heart(full)" type="Sprite2D" parent="CanvasLayer" unique_id=731067855]
+position = Vector2(34.81081, 33.374996)
+scale = Vector2(1.168919, 1.168919)
+texture = ExtResource("10_365w1")
 
 [connection signal="pressed" from="Care button/Care" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Mop" to="." method="_on_mop_pressed"]

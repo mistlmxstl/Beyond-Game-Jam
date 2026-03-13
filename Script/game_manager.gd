@@ -8,8 +8,8 @@ signal sanity_changed(current_sanity, max_sanity, distortion_strength)
 
 var current_tool = "none"
 
-var max_sanity := 30.0
-var current_sanity := 30.0
+var max_sanity := 100.0
+var current_sanity := 100.0
 var sanity_drain_per_second := 1.0
 
 var trash_picked = 0
