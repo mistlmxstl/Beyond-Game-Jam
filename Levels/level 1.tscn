@@ -233,6 +233,31 @@ offset_bottom = 600.0
 mouse_filter = 2
 texture = ExtResource("2_7moo8")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1416021520]
+
+[node name="ToolNotification" type="Label" parent="CanvasLayer" unique_id=1249465842]
+offset_left = 428.0
+offset_top = 11.0
+offset_right = 533.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.81960785, 0.6862745, 0.81960785, 0.9411765)
+theme_override_font_sizes/font_size = 15
+text = "Mop equipped"
+horizontal_alignment = 1
+
+[node name="SanityBar" type="ProgressBar" parent="CanvasLayer" unique_id=833040366]
+offset_right = 4.0
+offset_bottom = 27.0
+max_value = 30.0
+
+[node name="SanityLabel" type="Label" parent="CanvasLayer" unique_id=894058356]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DistortionOverlay" type="ColorRect" parent="CanvasLayer" unique_id=1317681800]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="Care button/Care" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Mop" to="." method="_on_mop_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Trash" to="." method="_on_trash_pressed"]
