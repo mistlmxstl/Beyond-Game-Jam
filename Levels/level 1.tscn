@@ -245,18 +245,25 @@ theme_override_font_sizes/font_size = 15
 text = "Mop equipped"
 horizontal_alignment = 1
 
-[node name="SanityBar" type="ProgressBar" parent="CanvasLayer" unique_id=833040366]
-offset_right = 4.0
-offset_bottom = 27.0
-max_value = 30.0
+[node name="CareBar" type="ProgressBar" parent="CanvasLayer" unique_id=833040366]
+offset_left = 4.0
+offset_top = 10.0
+offset_right = 399.0
+offset_bottom = 37.0
+value = 100.0
 
-[node name="SanityLabel" type="Label" parent="CanvasLayer" unique_id=894058356]
+[node name="CareLabel" type="Label" parent="CanvasLayer" unique_id=894058356]
 offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="DistortionOverlay" type="ColorRect" parent="CanvasLayer" unique_id=1317681800]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.99236816, 0.8784709, 0.9586441, 1)
 
 [connection signal="pressed" from="Care button/Care" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Mop" to="." method="_on_mop_pressed"]

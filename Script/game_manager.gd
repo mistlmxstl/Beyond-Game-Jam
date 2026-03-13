@@ -4,13 +4,13 @@ signal tool_changed(tool_name)
 signal notification_requested(message)
 signal cleaning_progress(trash_left, water_left)
 signal level_completed
-signal sanity_changed(current_sanity, max_sanity, distortion_strength)
+signal care_changed(current_care, max_care, distortion_strength, chaos_strength)
 
 var current_tool = "none"
 
-var max_sanity := 30.0
-var current_sanity := 30.0
-var sanity_drain_per_second := 1.0
+var max_care := 100.0
+var current_care := 100.0
+var care_drain_per_second := 5.0
 
 var trash_picked = 0
 var water_mopped = 0
@@ -22,7 +22,7 @@ var is_level_finished := false
 
 func _ready() -> void:
 	current_tool = "none"
-	current_sanity = max_sanity
+	current_care = max_care
 	trash_picked = 0
 	water_mopped = 0
 	is_level_finished = false
@@ -31,14 +31,14 @@ func _process(delta: float) -> void:
 	if is_level_finished:
 		return
 
-	if current_sanity > 0.0:
-		current_sanity -= sanity_drain_per_second * delta
-		current_sanity = max(current_sanity, 0.0)
-		_emit_sanity()
+	if current_care > 0.0:
+		current_care -= care_drain_per_second * delta
+		current_care = max(current_care, 0.0)
+		_emit_care()
 
 func setup_level(trash_count: int, water_count: int) -> void:
 	current_tool = "none"
-	current_sanity = max_sanity
+	current_care = max_care
 	trash_picked = 0
 	water_mopped = 0
 	total_trash = trash_count
@@ -47,7 +47,7 @@ func setup_level(trash_count: int, water_count: int) -> void:
 
 	_emit_progress()
 	tool_changed.emit(current_tool)
-	_emit_sanity()
+	_emit_care()
 
 func set_tool(tool_name: String) -> void:
 	current_tool = tool_name
@@ -63,6 +63,12 @@ func set_tool(tool_name: String) -> void:
 		_:
 			notification_requested.emit(tool_name + " equipped")
 
+func add_care(amount: float) -> void:
+	current_care += amount
+	current_care = clamp(current_care, 0.0, max_care)
+	_emit_care()
+	notification_requested.emit("Care +" + str(int(amount)))
+	
 func pickup_trash() -> void:
 	trash_picked += 1
 	print("Picked up trash")
@@ -88,16 +94,23 @@ func _emit_progress() -> void:
 	var water_left = max(total_water - water_mopped, 0)
 	cleaning_progress.emit(trash_left, water_left)
 
-func _emit_sanity() -> void:
-	sanity_changed.emit(current_sanity, max_sanity, get_distortion_strength())
+func _emit_care() -> void:
+	care_changed.emit(
+		current_care,
+		max_care,
+		get_distortion_strength(),
+		get_chaos_strength()
+	)
 
 func get_distortion_strength() -> float:
-	if current_sanity > 15.0:
+	if current_care > 25.0:
 		return 0.0
+	elif current_care > 20.0:
+		return remap(current_care, 25.0, 20.0, 0.05, 0.35)
+	else:
+		return remap(current_care, 20.0, 0.0, 0.4, 1.0)
 
-	if current_sanity > 12.0:
-		# mulai distort pelan dari 15 ke 12
-		return remap(current_sanity, 15.0, 12.0, 0.05, 0.18)
-
-	# di bawah 12 distort makin parah
-	return remap(current_sanity, 12.0, 0.0, 0.2, 0.8)
+func get_chaos_strength() -> float:
+	if current_care > 20.0:
+		return 0.0
+	return remap(current_care, 20.0, 0.0, 0.0, 1.0)
