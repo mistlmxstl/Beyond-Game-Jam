@@ -3,13 +3,11 @@ extends Node2D
 @onready var game_manager: Node = %GameManager
 @onready var mop: Button = $Buttons/Mop
 @onready var trash: Button = $Buttons/Trash
-@onready var tool_notification: Label = $CanvasLayer/ToolNotification
 
 var cursor_mop = preload("res://Assets/UI/Mop button.png")
 var cursor_trash = preload("res://Assets/UI/Trash button.png")
 
 func _ready() -> void:
-	game_manager.notification_requested.connect(_show_notification)
 	game_manager.level_completed.connect(_on_level_completed)
 	game_manager.tool_changed.connect(_on_tool_changed)
 	game_manager.cleaning_progress.connect(_on_cleaning_progress)
@@ -19,10 +17,10 @@ func _ready() -> void:
 	game_manager.setup_level(trash_count, water_count)
 
 	_on_tool_changed(game_manager.current_tool)
-	tool_notification.text = ""
 
+#Care button
 func _on_button_3_pressed() -> void:
-	_show_notification("Took care of myself!")
+	pass
 
 func _on_mop_pressed() -> void:
 	game_manager.set_tool("Mop")
@@ -42,14 +40,6 @@ func _on_tool_changed(tool_name: String) -> void:
 		_:
 			Input.set_custom_mouse_cursor(null)
 
-func _show_notification(message: String) -> void:
-	tool_notification.text = message
-	tool_notification.modulate.a = 1.0
-
-	var tween = create_tween()
-	tween.tween_interval(1.0)
-	tween.tween_property(tool_notification, "modulate:a", 0.0, 0.5)
 
 func _on_level_completed() -> void:
-	_show_notification("All clean! Next level unlocked")
-	# get_tree().change_scene_to_file("res://Levels/level_2.tscn")
+	pass # get_tree().change_scene_to_file("res://Levels/level_2.tscn")

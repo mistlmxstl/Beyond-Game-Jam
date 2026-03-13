@@ -5,12 +5,13 @@
 [ext_resource type="Script" uid="uid://4jhntrxeocxe" path="res://Script/level_1.gd" id="1_p48sa"]
 [ext_resource type="Texture2D" uid="uid://davigw055rqob" path="res://Assets/Bedroom/Background_bedroom.png" id="2_7moo8"]
 [ext_resource type="PackedScene" uid="uid://d4ne07e2dk0kh" path="res://Assets/Bedroom/Furniture.tscn" id="4_a63mx"]
-[ext_resource type="Texture2D" uid="uid://3xfqohgbf4sl" path="res://Assets/UI/Care button.png" id="5_1bp41"]
+[ext_resource type="Texture2D" uid="uid://daht6hdsd2fhi" path="res://Assets/UI/Care button.png" id="5_1bp41"]
 [ext_resource type="Texture2D" uid="uid://bv0bglu7fn52y" path="res://Assets/UI/Trash button.png" id="5_oalwn"]
 [ext_resource type="Texture2D" uid="uid://1ll0o2l4sd0x" path="res://Assets/UI/Mop button.png" id="6_bu6x3"]
 [ext_resource type="PackedScene" uid="uid://dk7x2i6d6ckl5" path="res://Assets/Water/Water.tscn" id="7_bu6x3"]
 [ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_365w1"]
 [ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="10_n48tk"]
+[ext_resource type="Texture2D" uid="uid://bd6xpqiiupui8" path="res://Assets/Bedroom/Journal_bedroom.png" id="12_qfol3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01go3"]
 border_width_left = 1
@@ -42,9 +43,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 534.0
+offset_left = 5.0
 offset_top = 509.0
-offset_right = 672.0
+offset_right = 143.0
 offset_bottom = 560.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -63,9 +64,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 613.0
+offset_left = 614.0
 offset_top = 509.0
-offset_right = 704.0
+offset_right = 705.0
 offset_bottom = 560.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -130,7 +131,7 @@ position = Vector2(213, 409)
 position = Vector2(233, 455)
 
 [node name="Garbage33" parent="Trash" unique_id=595818242 instance=ExtResource("1_7moo8")]
-position = Vector2(207, 482)
+position = Vector2(15, 193)
 
 [node name="Garbage34" parent="Trash" unique_id=919646514 instance=ExtResource("1_7moo8")]
 position = Vector2(193, 515)
@@ -269,6 +270,13 @@ value = 100.0
 position = Vector2(34.81081, 33.374996)
 scale = Vector2(1.168919, 1.168919)
 texture = ExtResource("10_365w1")
+
+[node name="JournalBedroom" type="Sprite2D" parent="." unique_id=236007880]
+z_index = -1
+position = Vector2(16.000008, 196)
+rotation = 0.5326027
+scale = Vector2(0.018741155, 0.018741155)
+texture = ExtResource("12_qfol3")
 
 [connection signal="pressed" from="Care button/Care" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Mop" to="." method="_on_mop_pressed"]

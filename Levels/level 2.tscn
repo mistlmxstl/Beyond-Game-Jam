@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://dxtu2ty6k35yw"]
 
 [ext_resource type="Script" uid="uid://c37b4c1pcolal" path="res://Script/game_manager.gd" id="1_qd3nc"]
-[ext_resource type="Texture2D" uid="uid://3xfqohgbf4sl" path="res://Assets/UI/Care button.png" id="2_rfkf8"]
+[ext_resource type="Texture2D" uid="uid://daht6hdsd2fhi" path="res://Assets/UI/Care button.png" id="2_rfkf8"]
 [ext_resource type="Texture2D" uid="uid://1ll0o2l4sd0x" path="res://Assets/UI/Mop button.png" id="3_po0sq"]
 [ext_resource type="Texture2D" uid="uid://bv0bglu7fn52y" path="res://Assets/UI/Trash button.png" id="4_oogqq"]
 [ext_resource type="PackedScene" uid="uid://bgxanngqlwv8" path="res://Assets/Kitchen and living room/Furnitures.tscn" id="5_po0sq"]
 [ext_resource type="Texture2D" uid="uid://d3ilvvs65xy2x" path="res://Assets/Kitchen and living room/Kitchen and living room_bg.png" id="5_rfkf8"]
 [ext_resource type="PackedScene" uid="uid://b0pmte6kgxlwa" path="res://Assets/Garbage/Garbage.tscn" id="7_q45ll"]
 [ext_resource type="PackedScene" uid="uid://dk7x2i6d6ckl5" path="res://Assets/Water/Water.tscn" id="8_f42k6"]
+[ext_resource type="Texture2D" uid="uid://cjcgevca27jo7" path="res://Assets/Kitchen and living room/Journal_living room.png" id="9_f42k6"]
 
 [node name="Level 2" type="Node2D" unique_id=139493112]
 
@@ -16,16 +17,16 @@ unique_name_in_owner = true
 script = ExtResource("1_qd3nc")
 
 [node name="Care button" type="HBoxContainer" parent="." unique_id=1208066626]
-z_index = 3
+z_index = 4
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 534.0
-offset_top = 509.0
-offset_right = 672.0
-offset_bottom = 560.0
+offset_left = 4.0
+offset_top = 510.0
+offset_right = 142.0
+offset_bottom = 561.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1.685, 1.685)
@@ -43,10 +44,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 613.0
-offset_top = 509.0
-offset_right = 704.0
-offset_bottom = 560.0
+offset_left = 615.0
+offset_top = 510.0
+offset_right = 706.0
+offset_bottom = 561.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1.685, 1.685)
@@ -234,7 +235,7 @@ position = Vector2(276, 538)
 
 [node name="Garbage44" parent="Garbage" unique_id=672205798 instance=ExtResource("7_q45ll")]
 z_index = 3
-position = Vector2(81, 569)
+position = Vector2(85, 575)
 
 [node name="Garbage45" parent="Garbage" unique_id=121567617 instance=ExtResource("7_q45ll")]
 z_index = 3
@@ -302,3 +303,10 @@ offset_top = -50.0
 offset_right = 776.0
 offset_bottom = 627.0
 texture = ExtResource("5_rfkf8")
+
+[node name="JournalLivingRoom" type="Sprite2D" parent="." unique_id=888569390]
+z_index = 3
+position = Vector2(662, 467)
+rotation = -1.2953479
+scale = Vector2(0.014864093, 0.01486409)
+texture = ExtResource("9_f42k6")
