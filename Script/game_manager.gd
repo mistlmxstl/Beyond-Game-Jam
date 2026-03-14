@@ -12,6 +12,10 @@ var max_care := 100.0
 var current_care := 100.0
 var care_drain_per_second := 5.0
 
+var break_duration := 3.0
+var break_recovery_amount := 10.0
+var is_taking_break := false
+
 var trash_picked = 0
 var water_mopped = 0
 
@@ -26,9 +30,10 @@ func _ready() -> void:
 	trash_picked = 0
 	water_mopped = 0
 	is_level_finished = false
+	is_taking_break = false
 
 func _process(delta: float) -> void:
-	if is_level_finished:
+	if is_level_finished or is_taking_break:
 		return
 
 	if current_care > 0.0:
@@ -44,12 +49,17 @@ func setup_level(trash_count: int, water_count: int) -> void:
 	total_trash = trash_count
 	total_water = water_count
 	is_level_finished = false
+	is_taking_break = false
 
 	_emit_progress()
 	tool_changed.emit(current_tool)
 	_emit_care()
 
 func set_tool(tool_name: String) -> void:
+	if is_taking_break:
+		notification_requested.emit("You're taking a break...")
+		return
+
 	current_tool = tool_name
 	tool_changed.emit(current_tool)
 
@@ -63,12 +73,41 @@ func set_tool(tool_name: String) -> void:
 		_:
 			notification_requested.emit(tool_name + " equipped")
 
-func add_care(amount: float) -> void:
+func add_care(amount: float, show_notification: bool = true) -> void:
 	current_care += amount
 	current_care = clamp(current_care, 0.0, max_care)
 	_emit_care()
-	notification_requested.emit("Care +" + str(int(amount)))
-	
+
+	if show_notification:
+		notification_requested.emit("Care +" + str(int(amount)))
+
+func start_break() -> void:
+	if is_level_finished:
+		return
+
+	if is_taking_break:
+		notification_requested.emit("Already taking a break...")
+		return
+
+	if current_care >= max_care:
+		notification_requested.emit("Care is already full")
+		return
+
+	is_taking_break = true
+	current_tool = "none"
+	tool_changed.emit(current_tool)
+	notification_requested.emit("Taking a break...")
+
+	await get_tree().create_timer(break_duration).timeout
+
+	if is_level_finished:
+		is_taking_break = false
+		return
+
+	add_care(break_recovery_amount, false)
+	notification_requested.emit("Break finished! Care +" + str(int(break_recovery_amount)))
+	is_taking_break = false
+
 func pickup_trash() -> void:
 	trash_picked += 1
 	print("Picked up trash")
