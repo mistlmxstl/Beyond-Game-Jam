@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://3gm5lbpfp1da"]
+
+[ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="1_smi7l"]
+[ext_resource type="Script" uid="uid://0v0kgi2e3x32" path="res://Script/credit.gd" id="1_yeyqa"]
+
+[node name="Credit" type="Control" unique_id=1504090159]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yeyqa")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1997251504]
+layout_mode = 0
+offset_right = 773.0
+offset_bottom = 600.0
+color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+
+[node name="Heading" type="Label" parent="ColorRect" unique_id=2140756029]
+layout_mode = 0
+offset_top = 6.0
+offset_right = 768.0
+offset_bottom = 98.0
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("1_smi7l")
+theme_override_font_sizes/font_size = 50
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Objective" type="Label" parent="ColorRect" unique_id=1433494566]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.25
+offset_top = -196.0
+offset_right = 359.25
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("1_smi7l")
+theme_override_font_sizes/font_size = 35
+text = "Code, UI: mistlmxstl_ & tyawa
+Art: NesNesNes 
+
+Additional resources:
+\"Jersey 25\" from Google Fonts
+
+Clean, Clean, Clean! was made for Beyond Game Jam 2026 in 1 week.
+
+Thank you for playing our game!!!"
+autowrap_mode = 2
+
+[node name="Heading3" type="Label" parent="ColorRect" unique_id=1927388064]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -92.0
+offset_right = 384.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("1_smi7l")
+theme_override_font_sizes/font_size = 50
+text = "Left click to go back..."
+horizontal_alignment = 1
+vertical_alignment = 1
