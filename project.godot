@@ -13,7 +13,7 @@ config_version=5
 config/name="beyond game jam"
 run/main_scene="uid://bfpttyqqdyeyj"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://pjphrxf48qh1"
 
 [display]
 

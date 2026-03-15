@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://bfpttyqqdyeyj"]
 
 [ext_resource type="Script" uid="uid://d0na01kooa7gm" path="res://Script/main_menu.gd" id="1_7ucfp"]
+[ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="2_fgwc1"]
+[ext_resource type="Texture2D" uid="uid://c71xrwi67u3vp" path="res://Assets/UI/Title/Play.png" id="3_3aa3s"]
+[ext_resource type="Texture2D" uid="uid://fpi3dvsw3m0o" path="res://Assets/UI/Title/How to Play.png" id="4_afcdg"]
+[ext_resource type="Texture2D" uid="uid://7cc4abep4544" path="res://Assets/UI/Title/About.png" id="5_7fdjg"]
+[ext_resource type="Texture2D" uid="uid://q12agrkl34mi" path="res://Assets/UI/Title/BG.png" id="6_wknim"]
 
 [node name="Main_menu" type="Control" unique_id=115420558]
 layout_mode = 3
@@ -13,14 +18,16 @@ script = ExtResource("1_7ucfp")
 
 [node name="Title" type="Label" parent="." unique_id=1826998436]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -299.0
-offset_right = 450.0
-offset_bottom = 299.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 139
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -441.0
+offset_top = 17.0
+offset_bottom = 326.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("2_fgwc1")
+theme_override_font_sizes/font_size = 85
 text = "Clean, Clean, Clean!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -33,41 +40,50 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -299.0
-offset_top = -245.0
+offset_left = -340.0
+offset_top = -307.0
 offset_right = -9.0
+offset_bottom = -36.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/separation = 14
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="Start" type="Button" parent="Buttons" unique_id=808655146]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 41
-text = "Start"
+icon = ExtResource("3_3aa3s")
+flat = true
 
 [node name="Tutorial" type="Button" parent="Buttons" unique_id=486276521]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 41
-text = "How to Play"
+icon = ExtResource("4_afcdg")
+flat = true
 
 [node name="About" type="Button" parent="Buttons" unique_id=1280122109]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 41
-text = "About"
+icon = ExtResource("5_7fdjg")
+flat = true
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1936294060]
+[node name="ColorRect" type="TextureRect" parent="." unique_id=1612560288]
 z_index = -1
-layout_mode = 0
-offset_left = -8.0
-offset_top = -13.0
-offset_right = 910.0
-offset_bottom = 613.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -873.0
+offset_top = -1.0
+offset_right = 28.5
+offset_bottom = 600.0
+grow_horizontal = 0
 mouse_filter = 2
-color = Color(0.334659, 0.40246812, 0.39964002, 1)
+texture = ExtResource("6_wknim")
+expand_mode = 2
 
 [connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Buttons/Tutorial" to="." method="_on_tutorial_pressed"]

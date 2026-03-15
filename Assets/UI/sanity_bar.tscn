@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b8ni5enodbkam"]
+
+[ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="1_bpgle"]
+[ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="2_q88wv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hucvt"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v82gm"]
+bg_color = Color(0.8901961, 0.21960784, 0.21960784, 1)
+border_color = Color(0.92116004, 0.7523857, 0.7564273, 1)
+corner_detail = 1
+
+[node name="Sanity bar" type="Node" unique_id=804619789]
+
+[node name="SanityBar" type="ProgressBar" parent="." unique_id=2343049]
+offset_left = 35.0
+offset_top = 24.0
+offset_right = 289.0
+offset_bottom = 45.5
+theme_override_fonts/font = ExtResource("1_bpgle")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/background = SubResource("StyleBoxFlat_hucvt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v82gm")
+step = 10.0
+value = 100.0
+
+[node name="Heart(full)" type="Sprite2D" parent="." unique_id=1323837626]
+z_index = 1
+position = Vector2(34.81081, 33.374996)
+scale = Vector2(1.168919, 1.168919)
+texture = ExtResource("2_q88wv")
