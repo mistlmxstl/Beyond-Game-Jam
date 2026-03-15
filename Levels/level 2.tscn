@@ -11,12 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://dk7x2i6d6ckl5" path="res://Assets/Water/Water.tscn" id="8_f42k6"]
 [ext_resource type="Texture2D" uid="uid://cjcgevca27jo7" path="res://Assets/Kitchen and living room/Journal_living room.png" id="9_f42k6"]
 [ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_77drm"]
+[ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="10_bc6el"]
 [ext_resource type="Script" uid="uid://dp3pe4a045d8p" path="res://Levels/care_popup.gd" id="11_n051j"]
-[ext_resource type="Script" uid="uid://dsyt1ym73de5v" path="res://Levels/game_over_panel.gd" id="12_bxu3j"]
+[ext_resource type="Script" path="res://Levels/game_over_panel.gd" id="12_bxu3j"]
 [ext_resource type="Script" uid="uid://q02ixgdtuiaa" path="res://Levels/level_complete_panel.gd" id="13_kehvb"]
-[ext_resource type="Script" uid="uid://vmxd7p6ffs16" path="res://Levels/journal_popup.gd" id="14_kehvb"]
-[ext_resource type="Texture2D" uid="uid://bd6xpqiiupui8" path="res://Assets/Bedroom/Journal_bedroom.png" id="15_f777q"]
+[ext_resource type="Script" path="res://Levels/journal_popup.gd" id="14_kehvb"]
 [ext_resource type="Script" uid="uid://bqool75s6iqcm" path="res://Levels/journal.gd" id="16_bc6el"]
+[ext_resource type="Texture2D" uid="uid://bj0g1t2712fas" path="res://Assets/UI/X button.png" id="17_bc6el"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f777q"]
 bg_color = Color(0.64929366, 0.53113973, 0.4508716, 1)
@@ -352,14 +353,16 @@ texture = ExtResource("5_rfkf8")
 
 [node name="ToolNotification" type="Label" parent="CanvasLayer" unique_id=1708112773]
 visible = false
-offset_left = 428.0
+offset_left = 421.0
 offset_top = 11.0
-offset_right = 533.0
+offset_right = 526.0
 offset_bottom = 50.0
 theme_override_colors/font_color = Color(0, 0, 0, 0.9411765)
+theme_override_fonts/font = ExtResource("10_bc6el")
 theme_override_font_sizes/font_size = 15
 text = "Mop equipped"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="CareBar" type="ProgressBar" parent="CanvasLayer" unique_id=1853366736]
 offset_left = 25.0
@@ -412,7 +415,7 @@ stretch_mode = 4
 layout_mode = 0
 offset_right = 18.0
 offset_bottom = 31.0
-text = "X"
+icon = ExtResource("17_bc6el")
 
 [node name="GameOverPanel" type="ColorRect" parent="CanvasLayer" unique_id=400852189]
 visible = false
@@ -496,27 +499,36 @@ text = "Next Room
 [node name="JournalPopup" type="Panel" parent="CanvasLayer" unique_id=673463917]
 process_mode = 2
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 774.0
+offset_bottom = 600.0
 script = ExtResource("14_kehvb")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/JournalPopup" unique_id=1879429283]
-layout_mode = 0
-offset_left = 286.0
-offset_top = 140.0
-offset_right = 535.0
-offset_bottom = 447.0
-texture = ExtResource("15_f777q")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.25
+offset_top = -275.25
+offset_right = 223.25
+offset_bottom = 275.25
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_f42k6")
 expand_mode = 1
 
 [node name="CloseButton" type="Button" parent="CanvasLayer/JournalPopup" unique_id=1076582025]
 process_mode = 2
 layout_mode = 0
-offset_left = 503.0
-offset_top = 140.0
-offset_right = 538.0
-offset_bottom = 171.0
-text = "X"
+offset_left = 588.0
+offset_top = 3.0
+offset_right = 633.0
+offset_bottom = 48.0
+icon = ExtResource("17_bc6el")
+flat = true
+expand_icon = true
 
 [node name="Journal" type="Area2D" parent="." unique_id=1747405220]
 script = ExtResource("16_bc6el")
