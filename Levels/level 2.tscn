@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cjcgevca27jo7" path="res://Assets/Kitchen and living room/Journal_living room.png" id="9_f42k6"]
 [ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_77drm"]
 [ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="10_bc6el"]
+[ext_resource type="Script" uid="uid://0wmo2svux74" path="res://Levels/canvas_layer_lvl2.gd" id="10_pbgmx"]
 [ext_resource type="Script" uid="uid://dp3pe4a045d8p" path="res://Levels/care_popup.gd" id="11_n051j"]
 [ext_resource type="Script" path="res://Levels/game_over_panel.gd" id="12_bxu3j"]
 [ext_resource type="Script" uid="uid://q02ixgdtuiaa" path="res://Levels/level_complete_panel.gd" id="13_kehvb"]
@@ -32,6 +33,90 @@ expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bc6el"]
 bg_color = Color(0.8901961, 0.21960784, 0.21960784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqihx"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31cun"]
+bg_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1x8a"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dyh7i"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2wt5"]
+bg_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33hng"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbgmx"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6f1kt"]
+bg_color = Color(0.5411765, 0.2, 0.019607844, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkprm"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgwih"]
+bg_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6f1kt"]
 size = Vector2(40.396606, 34.710022)
@@ -350,6 +435,7 @@ mouse_filter = 2
 texture = ExtResource("5_rfkf8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1577835345]
+script = ExtResource("10_pbgmx")
 
 [node name="ToolNotification" type="Label" parent="CanvasLayer" unique_id=1708112773]
 visible = false
@@ -417,7 +503,7 @@ offset_right = 18.0
 offset_bottom = 31.0
 icon = ExtResource("17_bc6el")
 
-[node name="GameOverPanel" type="ColorRect" parent="CanvasLayer" unique_id=400852189]
+[node name="GameOverPanel" type="ColorRect" parent="CanvasLayer" unique_id=1455840800]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -427,7 +513,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.003921569)
 script = ExtResource("12_bxu3j")
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/GameOverPanel" unique_id=1744424344]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/GameOverPanel" unique_id=1765239536]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -435,29 +521,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/GameOverPanel/CenterContainer" unique_id=1298557804]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/GameOverPanel/CenterContainer" unique_id=121166438]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pqihx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer" unique_id=77153021]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer" unique_id=335006270]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=200070534]
+[node name="TitleLabel" type="Label" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=598212998]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_bc6el")
 text = "GAME OVER"
+horizontal_alignment = 1
 
-[node name="SubtitleLabel" type="Label" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1410948201]
+[node name="SubtitleLabel" type="Label" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1738507587]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_bc6el")
 text = "You pushed yourself too far.
 Take a breath and try again."
+horizontal_alignment = 1
 
-[node name="TryAgainButton" type="Button" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=112251790]
+[node name="TryAgainButton" type="Button" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1096485497]
 custom_minimum_size = Vector2(180, 44)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_colors/font_hover_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_bc6el")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_31cun")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k1x8a")
 text = "Try Again"
 
-[node name="LevelCompletePanel" type="ColorRect" parent="CanvasLayer" unique_id=1914202746]
-visible = false
+[node name="LevelCompletePanel" type="ColorRect" parent="CanvasLayer" unique_id=33218483]
+process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -466,7 +565,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.003921569)
 script = ExtResource("13_kehvb")
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/LevelCompletePanel" unique_id=321551714]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/LevelCompletePanel" unique_id=1793910027]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -474,26 +573,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/LevelCompletePanel/CenterContainer" unique_id=725628881]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/LevelCompletePanel/CenterContainer" unique_id=686506486]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dyh7i")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer" unique_id=523433237]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer" unique_id=761301208]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1308012825]
+[node name="TitleLabel" type="Label" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1058435829]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_bc6el")
 text = "ROOM CLEAN"
+horizontal_alignment = 1
 
-[node name="SubtitleLabel" type="Label" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=298305641]
+[node name="SubtitleLabel" type="Label" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=936489963]
 layout_mode = 2
-text = "The room feels lighter now. Let's keep going.
-Ready for the next room?"
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_bc6el")
+text = "Hurray! You did it, you cleaned the house!"
+horizontal_alignment = 1
 
-[node name="NextLevelButton" type="Button" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1503357809]
+[node name="NextLevelButton" type="Button" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1859466117]
 custom_minimum_size = Vector2(180, 44)
 layout_mode = 2
-text = "Next Room
+theme_override_colors/font_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_colors/font_hover_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_bc6el")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_l2wt5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_33hng")
+text = "Finish Cleaning
 "
 
 [node name="JournalPopup" type="Panel" parent="CanvasLayer" unique_id=673463917]
@@ -529,6 +640,91 @@ offset_bottom = 48.0
 icon = ExtResource("17_bc6el")
 flat = true
 expand_icon = true
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1271564932]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DarkBg" type="ColorRect" parent="CanvasLayer/PauseMenu" unique_id=551318357]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.57254905)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu" unique_id=1007178899]
+layout_mode = 0
+offset_right = 780.0
+offset_bottom = 597.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Panel" unique_id=129378367]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -54.5
+offset_right = 95.0
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1188808254]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_bc6el")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_pbgmx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6f1kt")
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=254725611]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_bc6el")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_pbgmx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6f1kt")
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1003982492]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_bc6el")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_pbgmx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6f1kt")
+text = "Main Menu"
+
+[node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=1052980614]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -54.0
+offset_top = 5.0
+offset_right = -6.0
+offset_bottom = 52.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_bc6el")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_tkprm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kgwih")
+text = "| |"
 
 [node name="Journal" type="Area2D" parent="." unique_id=1747405220]
 script = ExtResource("16_bc6el")

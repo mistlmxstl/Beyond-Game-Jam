@@ -91,7 +91,7 @@ func _on_restart_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().paused = false
-	get_tree().quit()
+	get_tree().change_scene_to_file(\"res://Levels/Main_menu.tscn\")
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n48tk"]
@@ -107,6 +107,90 @@ expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01go3"]
 bg_color = Color(0.8901961, 0.21960784, 0.21960784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oir2b"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mm7d"]
+bg_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76l1h"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vupbn"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2060p"]
+bg_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yst4"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8set"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3tkx"]
+bg_color = Color(0.5411765, 0.2, 0.019607844, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwgkd"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2mh0"]
+bg_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgkd"]
 size = Vector2(43, 53.929077)
@@ -441,6 +525,7 @@ grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/GameOverPanel/CenterContainer" unique_id=877845493]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oir2b")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer" unique_id=2042207741]
 layout_mode = 2
@@ -448,16 +533,28 @@ theme_override_constants/separation = 12
 
 [node name="TitleLabel" type="Label" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1625533114]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
 text = "GAME OVER"
+horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1523869238]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
 text = "You pushed yourself too far.
 Take a breath and try again."
+horizontal_alignment = 1
 
 [node name="TryAgainButton" type="Button" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=960160238]
 custom_minimum_size = Vector2(180, 44)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_colors/font_hover_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_5mm7d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_76l1h")
 text = "Try Again"
 
 [node name="LevelCompletePanel" type="ColorRect" parent="CanvasLayer" unique_id=370209421]
@@ -481,6 +578,7 @@ grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/LevelCompletePanel/CenterContainer" unique_id=526245732]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vupbn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer" unique_id=1814133154]
 layout_mode = 2
@@ -488,16 +586,28 @@ theme_override_constants/separation = 12
 
 [node name="TitleLabel" type="Label" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1607876516]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
 text = "ROOM CLEAN"
+horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1429511917]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
 text = "The room feels lighter now. Let's keep going.
 Ready for the next room?"
+horizontal_alignment = 1
 
 [node name="NextLevelButton" type="Button" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=987287259]
 custom_minimum_size = Vector2(180, 44)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_colors/font_hover_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2060p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1yst4")
 text = "Next Room
 "
 
@@ -526,6 +636,7 @@ expand_mode = 1
 
 [node name="CloseButton" type="Button" parent="CanvasLayer/JournalPopup" unique_id=1606742533]
 process_mode = 2
+visible = false
 layout_mode = 0
 offset_left = 585.0
 offset_top = 3.0
@@ -536,6 +647,7 @@ flat = true
 expand_icon = true
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1966675947]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -558,31 +670,65 @@ offset_right = 780.0
 offset_bottom = 597.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Panel" unique_id=64277343]
-layout_mode = 0
-offset_left = 369.0
-offset_top = 250.0
-offset_right = 459.0
-offset_bottom = 351.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -54.5
+offset_right = 95.0
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
 
 [node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=508926096]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_m8set")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d3tkx")
 text = "Resume"
 
 [node name="RestartButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1704421730]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_m8set")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d3tkx")
 text = "Restart"
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1443765960]
 layout_mode = 2
-text = "Quit"
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_m8set")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d3tkx")
+text = "Main Menu"
 
 [node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=2070014811]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -30.0
-offset_bottom = 31.0
+offset_left = -54.0
+offset_top = 5.0
+offset_right = -6.0
+offset_bottom = 52.0
 grow_horizontal = 0
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwgkd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r2mh0")
 text = "| |"
 
 [node name="Journal" type="Area2D" parent="." unique_id=910256523]
