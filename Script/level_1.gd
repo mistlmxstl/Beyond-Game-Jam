@@ -6,6 +6,7 @@ extends Node2D
 @onready var care_label: Label = $CanvasLayer/CareLabel
 @onready var distortion_overlay: ColorRect = $CanvasLayer/DistortionOverlay
 @onready var care_popup: CarePopup = $CanvasLayer/CarePopup
+@onready var game_over_panel: GameOverPanel = $CanvasLayer/GameOverPanel
 
 @onready var normal_room: Node2D = $Environment
 @onready var distorted_room: Node2D = $DistortedEnvironment
@@ -48,7 +49,15 @@ func _ready() -> void:
 	normal_room.visible = true
 	distorted_room.visible = false
 
+	tool_notification.visible = true
+	care_bar.visible = true
+	care_label.visible = true
+
 	distortion_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	if game_over_panel != null:
+		game_over_panel.hide_panel()
+		game_over_panel.try_again_pressed.connect(_on_try_again_pressed)
 
 	care_popup.popup_closed.connect(_on_popup_closed)
 
@@ -57,6 +66,7 @@ func _ready() -> void:
 	game_manager.tool_changed.connect(_on_tool_changed)
 	game_manager.cleaning_progress.connect(_on_cleaning_progress)
 	game_manager.care_changed.connect(_on_care_changed)
+	game_manager.game_over.connect(_on_game_over)
 
 	var trash_count: int = get_tree().get_nodes_in_group("trash").size()
 	var water_count: int = get_tree().get_nodes_in_group("water").size()
@@ -69,6 +79,9 @@ func _process(delta: float) -> void:
 	if care_popup.is_open():
 		return
 
+	if game_over_panel != null and game_over_panel.visible:
+		return
+
 	if is_flickering and not is_locked_distorted and not visual_transition_running:
 		flicker_timer += delta
 		if flicker_timer >= flicker_interval:
@@ -79,15 +92,21 @@ func _process(delta: float) -> void:
 func _on_button_3_pressed() -> void:
 	if care_popup.is_open():
 		return
+	if game_over_panel != null and game_over_panel.visible:
+		return
 	game_manager.start_break()
 
 func _on_mop_pressed() -> void:
 	if care_popup.is_open():
 		return
+	if game_over_panel != null and game_over_panel.visible:
+		return
 	game_manager.set_tool("Mop")
 
 func _on_trash_pressed() -> void:
 	if care_popup.is_open():
+		return
+	if game_over_panel != null and game_over_panel.visible:
 		return
 	game_manager.set_tool("Trash bag")
 
@@ -106,11 +125,13 @@ func _on_tool_changed(tool_name: String) -> void:
 func _show_notification(message: String) -> void:
 	if care_popup.is_open():
 		return
+	if game_over_panel != null and game_over_panel.visible:
+		return
 
 	tool_notification.text = message
 	tool_notification.modulate.a = 1.0
 
-	var tween = create_tween()
+	var tween := create_tween()
 	tween.tween_interval(1.0)
 	tween.tween_property(tool_notification, "modulate:a", 0.0, 0.5)
 
@@ -130,11 +151,9 @@ func _on_care_changed(current_care: float, max_care: float, distortion_strength:
 		previous_care = current_care
 		return
 
-	# care > 50 = normal room
 	if current_care > CARE_FLICKER_START:
 		_show_normal_room()
 
-	# 50 >= care > 15 = flicker, makin cepat saat care turun
 	elif current_care > CARE_LOCK_DISTORTED:
 		if previous_care > CARE_FLICKER_START and current_care <= CARE_FLICKER_START and not has_shown_popup_50:
 			has_shown_popup_50 = true
@@ -155,7 +174,6 @@ func _on_care_changed(current_care: float, max_care: float, distortion_strength:
 				is_flickering = true
 				flicker_interval = _get_flicker_interval(current_care)
 
-	# care <= 15 = fast flicker once, lalu lock distorted
 	else:
 		if previous_care > CARE_LOCK_DISTORTED and current_care <= CARE_LOCK_DISTORTED and not has_shown_popup_20:
 			has_shown_popup_20 = true
@@ -226,3 +244,20 @@ func _flash_room(times: int, interval: float, end_distorted: bool) -> void:
 
 func _on_popup_closed() -> void:
 	_on_tool_changed(game_manager.current_tool)
+
+func _on_game_over() -> void:
+	Input.set_custom_mouse_cursor(null)
+
+	tool_notification.visible = false
+	care_bar.visible = false
+	care_label.visible = false
+	distortion_overlay.color = Color(0.35, 0.0, 0.0, 0.45)
+
+	if game_over_panel != null:
+		game_over_panel.show_panel()
+
+	get_tree().paused = true
+
+func _on_try_again_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()

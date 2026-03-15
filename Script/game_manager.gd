@@ -5,6 +5,7 @@ signal notification_requested(message)
 signal cleaning_progress(trash_left, water_left)
 signal level_completed
 signal care_changed(current_care, max_care, distortion_strength, chaos_strength)
+signal game_over
 
 var current_tool = "none"
 
@@ -23,6 +24,7 @@ var total_trash = 0
 var total_water = 0
 
 var is_level_finished := false
+var is_game_over := false
 
 func _ready() -> void:
 	current_tool = "none"
@@ -31,15 +33,19 @@ func _ready() -> void:
 	water_mopped = 0
 	is_level_finished = false
 	is_taking_break = false
+	is_game_over = false
 
 func _process(delta: float) -> void:
-	if is_level_finished or is_taking_break:
+	if is_level_finished or is_taking_break or is_game_over:
 		return
 
 	if current_care > 0.0:
 		current_care -= care_drain_per_second * delta
 		current_care = max(current_care, 0.0)
 		_emit_care()
+
+		if current_care <= 0.0:
+			_trigger_game_over()
 
 func setup_level(trash_count: int, water_count: int) -> void:
 	current_tool = "none"
@@ -50,12 +56,16 @@ func setup_level(trash_count: int, water_count: int) -> void:
 	total_water = water_count
 	is_level_finished = false
 	is_taking_break = false
+	is_game_over = false
 
 	_emit_progress()
 	tool_changed.emit(current_tool)
 	_emit_care()
 
 func set_tool(tool_name: String) -> void:
+	if is_game_over:
+		return
+
 	if is_taking_break:
 		notification_requested.emit("You're taking a break...")
 		return
@@ -74,6 +84,9 @@ func set_tool(tool_name: String) -> void:
 			notification_requested.emit(tool_name + " equipped")
 
 func add_care(amount: float, show_notification: bool = true) -> void:
+	if is_game_over:
+		return
+
 	current_care += amount
 	current_care = clamp(current_care, 0.0, max_care)
 	_emit_care()
@@ -82,6 +95,9 @@ func add_care(amount: float, show_notification: bool = true) -> void:
 		notification_requested.emit("Care +" + str(int(amount)))
 
 func start_break() -> void:
+	if is_game_over:
+		return
+
 	if is_level_finished:
 		return
 
@@ -100,7 +116,7 @@ func start_break() -> void:
 
 	await get_tree().create_timer(break_duration).timeout
 
-	if is_level_finished:
+	if is_level_finished or is_game_over:
 		is_taking_break = false
 		return
 
@@ -109,11 +125,17 @@ func start_break() -> void:
 	is_taking_break = false
 
 func pickup_trash() -> void:
+	if is_game_over:
+		return
+
 	trash_picked += 1
 	print("Picked up trash")
 	_check_level_complete()
 
 func mop_floor() -> void:
+	if is_game_over:
+		return
+
 	water_mopped += 1
 	print("Mopped floor")
 	_check_level_complete()
@@ -127,6 +149,16 @@ func _check_level_complete() -> void:
 		is_level_finished = true
 		notification_requested.emit("All clean! Next level unlocked")
 		level_completed.emit()
+
+func _trigger_game_over() -> void:
+	if is_game_over:
+		return
+
+	is_game_over = true
+	current_tool = "none"
+	tool_changed.emit(current_tool)
+	notification_requested.emit("Game Over")
+	game_over.emit()
 
 func _emit_progress() -> void:
 	var trash_left = max(total_trash - trash_picked, 0)
@@ -142,14 +174,17 @@ func _emit_care() -> void:
 	)
 
 func get_distortion_strength() -> float:
-	if current_care > 25.0:
+	if current_care > 50.0:
 		return 0.0
-	elif current_care > 20.0:
-		return remap(current_care, 25.0, 20.0, 0.05, 0.35)
+	elif current_care > 15.0:
+		return remap(current_care, 50.0, 15.0, 0.1, 0.7)
 	else:
-		return remap(current_care, 20.0, 0.0, 0.4, 1.0)
+		return 1.0
 
 func get_chaos_strength() -> float:
-	if current_care > 20.0:
+	if current_care > 50.0:
 		return 0.0
-	return remap(current_care, 20.0, 0.0, 0.0, 1.0)
+	elif current_care > 15.0:
+		return remap(current_care, 50.0, 15.0, 0.0, 0.5)
+	else:
+		return remap(current_care, 15.0, 0.0, 0.5, 1.0)
