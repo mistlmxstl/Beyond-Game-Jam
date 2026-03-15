@@ -96,7 +96,7 @@ func _process(delta: float) -> void:
 			flicker_show_distorted = !flicker_show_distorted
 			_set_distorted_room(flicker_show_distorted)
 
-func _on_button_3_pressed() -> void:
+func _on_care_pressed() -> void:
 	if care_popup.is_open():
 		return
 	if game_over_panel != null and game_over_panel.visible:

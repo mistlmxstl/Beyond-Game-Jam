@@ -10,8 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://1ll0o2l4sd0x" path="res://Assets/UI/Mop button.png" id="6_bu6x3"]
 [ext_resource type="PackedScene" uid="uid://dk7x2i6d6ckl5" path="res://Assets/Water/Water.tscn" id="7_bu6x3"]
 [ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_365w1"]
-[ext_resource type="Script" uid="uid://dp3pe4a045d8p" path="res://Levels/care_popup.gd" id="11_n48tk"]
-[ext_resource type="Script" uid="uid://dsyt1ym73de5v" path="res://Levels/game_over_panel.gd" id="12_qfol3"]
+[ext_resource type="Script" path="res://Levels/care_popup.gd" id="11_n48tk"]
+[ext_resource type="Script" path="res://Levels/game_over_panel.gd" id="12_qfol3"]
 [ext_resource type="Script" uid="uid://q02ixgdtuiaa" path="res://Levels/level_complete_panel.gd" id="13_01go3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n48tk"]
@@ -42,9 +42,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 534.0
-offset_top = 509.0
-offset_right = 672.0
+offset_left = 6.0
+offset_top = 508.99997
+offset_right = 144.0
 offset_bottom = 560.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -82,123 +82,123 @@ layout_mode = 2
 icon = ExtResource("5_oalwn")
 icon_alignment = 1
 
-[node name="Trash" type="Node" parent="." unique_id=754426353]
+[node name="Garbage" type="Node" parent="." unique_id=754426353]
 
-[node name="Garbage" parent="Trash" unique_id=422682489 instance=ExtResource("1_7moo8")]
+[node name="Garbage" parent="Garbage" unique_id=422682489 instance=ExtResource("1_7moo8")]
 position = Vector2(577, 151)
 
-[node name="Garbage35" parent="Trash" unique_id=564513714 instance=ExtResource("1_7moo8")]
+[node name="Garbage35" parent="Garbage" unique_id=564513714 instance=ExtResource("1_7moo8")]
 position = Vector2(573, 108)
 
-[node name="Garbage36" parent="Trash" unique_id=1173884310 instance=ExtResource("1_7moo8")]
+[node name="Garbage36" parent="Garbage" unique_id=1173884310 instance=ExtResource("1_7moo8")]
 position = Vector2(607, 114)
 
-[node name="Garbage2" parent="Trash" unique_id=713419458 instance=ExtResource("1_7moo8")]
+[node name="Garbage2" parent="Garbage" unique_id=713419458 instance=ExtResource("1_7moo8")]
 position = Vector2(189, 132)
 
-[node name="Garbage3" parent="Trash" unique_id=112721293 instance=ExtResource("1_7moo8")]
+[node name="Garbage3" parent="Garbage" unique_id=112721293 instance=ExtResource("1_7moo8")]
 position = Vector2(243, 145)
 
-[node name="Garbage4" parent="Trash" unique_id=381003542 instance=ExtResource("1_7moo8")]
+[node name="Garbage4" parent="Garbage" unique_id=381003542 instance=ExtResource("1_7moo8")]
 position = Vector2(181, 257)
 
-[node name="Garbage5" parent="Trash" unique_id=971044697 instance=ExtResource("1_7moo8")]
+[node name="Garbage5" parent="Garbage" unique_id=971044697 instance=ExtResource("1_7moo8")]
 position = Vector2(652, 131)
 
-[node name="Garbage6" parent="Trash" unique_id=1363524683 instance=ExtResource("1_7moo8")]
+[node name="Garbage6" parent="Garbage" unique_id=1363524683 instance=ExtResource("1_7moo8")]
 position = Vector2(749, 119)
 
-[node name="Garbage7" parent="Trash" unique_id=467184676 instance=ExtResource("1_7moo8")]
+[node name="Garbage7" parent="Garbage" unique_id=467184676 instance=ExtResource("1_7moo8")]
 position = Vector2(711, 146)
 
-[node name="Garbage8" parent="Trash" unique_id=785564249 instance=ExtResource("1_7moo8")]
+[node name="Garbage8" parent="Garbage" unique_id=785564249 instance=ExtResource("1_7moo8")]
 position = Vector2(744, 187)
 
-[node name="Garbage37" parent="Trash" unique_id=497318553 instance=ExtResource("1_7moo8")]
+[node name="Garbage37" parent="Garbage" unique_id=497318553 instance=ExtResource("1_7moo8")]
 position = Vector2(721, 230)
 
-[node name="Garbage38" parent="Trash" unique_id=62429877 instance=ExtResource("1_7moo8")]
+[node name="Garbage38" parent="Garbage" unique_id=62429877 instance=ExtResource("1_7moo8")]
 position = Vector2(494, 139)
 
-[node name="Garbage39" parent="Trash" unique_id=954164319 instance=ExtResource("1_7moo8")]
+[node name="Garbage39" parent="Garbage" unique_id=954164319 instance=ExtResource("1_7moo8")]
 position = Vector2(525, 226)
 
-[node name="Garbage9" parent="Trash" unique_id=1744002823 instance=ExtResource("1_7moo8")]
+[node name="Garbage9" parent="Garbage" unique_id=1744002823 instance=ExtResource("1_7moo8")]
 position = Vector2(213, 409)
 
-[node name="Garbage10" parent="Trash" unique_id=1437631514 instance=ExtResource("1_7moo8")]
+[node name="Garbage10" parent="Garbage" unique_id=1437631514 instance=ExtResource("1_7moo8")]
 position = Vector2(233, 455)
 
-[node name="Garbage33" parent="Trash" unique_id=595818242 instance=ExtResource("1_7moo8")]
+[node name="Garbage33" parent="Garbage" unique_id=595818242 instance=ExtResource("1_7moo8")]
 position = Vector2(207, 482)
 
-[node name="Garbage34" parent="Trash" unique_id=919646514 instance=ExtResource("1_7moo8")]
+[node name="Garbage34" parent="Garbage" unique_id=919646514 instance=ExtResource("1_7moo8")]
 position = Vector2(193, 515)
 
-[node name="Garbage11" parent="Trash" unique_id=1926041971 instance=ExtResource("1_7moo8")]
+[node name="Garbage11" parent="Garbage" unique_id=1926041971 instance=ExtResource("1_7moo8")]
 position = Vector2(103, 454)
 
-[node name="Garbage30" parent="Trash" unique_id=253808489 instance=ExtResource("1_7moo8")]
+[node name="Garbage30" parent="Garbage" unique_id=253808489 instance=ExtResource("1_7moo8")]
 position = Vector2(95, 483)
 
-[node name="Garbage31" parent="Trash" unique_id=1545248583 instance=ExtResource("1_7moo8")]
+[node name="Garbage31" parent="Garbage" unique_id=1545248583 instance=ExtResource("1_7moo8")]
 position = Vector2(45, 341)
 
-[node name="Garbage32" parent="Trash" unique_id=590755796 instance=ExtResource("1_7moo8")]
+[node name="Garbage32" parent="Garbage" unique_id=590755796 instance=ExtResource("1_7moo8")]
 position = Vector2(88, 362)
 
-[node name="Garbage12" parent="Trash" unique_id=1209129230 instance=ExtResource("1_7moo8")]
+[node name="Garbage12" parent="Garbage" unique_id=1209129230 instance=ExtResource("1_7moo8")]
 position = Vector2(30, 454)
 
-[node name="Garbage13" parent="Trash" unique_id=2093085440 instance=ExtResource("1_7moo8")]
+[node name="Garbage13" parent="Garbage" unique_id=2093085440 instance=ExtResource("1_7moo8")]
 position = Vector2(292, 564)
 
-[node name="Garbage14" parent="Trash" unique_id=624806669 instance=ExtResource("1_7moo8")]
+[node name="Garbage14" parent="Garbage" unique_id=624806669 instance=ExtResource("1_7moo8")]
 position = Vector2(356, 502)
 
-[node name="Garbage15" parent="Trash" unique_id=327271998 instance=ExtResource("1_7moo8")]
+[node name="Garbage15" parent="Garbage" unique_id=327271998 instance=ExtResource("1_7moo8")]
 position = Vector2(700, 312)
 
-[node name="Garbage16" parent="Trash" unique_id=1616568537 instance=ExtResource("1_7moo8")]
+[node name="Garbage16" parent="Garbage" unique_id=1616568537 instance=ExtResource("1_7moo8")]
 position = Vector2(730, 346)
 
-[node name="Garbage17" parent="Trash" unique_id=1343054901 instance=ExtResource("1_7moo8")]
+[node name="Garbage17" parent="Garbage" unique_id=1343054901 instance=ExtResource("1_7moo8")]
 position = Vector2(658, 375)
 
-[node name="Garbage18" parent="Trash" unique_id=205241463 instance=ExtResource("1_7moo8")]
+[node name="Garbage18" parent="Garbage" unique_id=205241463 instance=ExtResource("1_7moo8")]
 position = Vector2(377, 319)
 
-[node name="Garbage19" parent="Trash" unique_id=1348085556 instance=ExtResource("1_7moo8")]
+[node name="Garbage19" parent="Garbage" unique_id=1348085556 instance=ExtResource("1_7moo8")]
 position = Vector2(416, 358)
 
-[node name="Garbage20" parent="Trash" unique_id=424359480 instance=ExtResource("1_7moo8")]
+[node name="Garbage20" parent="Garbage" unique_id=424359480 instance=ExtResource("1_7moo8")]
 position = Vector2(454, 128)
 
-[node name="Garbage21" parent="Trash" unique_id=2086852381 instance=ExtResource("1_7moo8")]
+[node name="Garbage21" parent="Garbage" unique_id=2086852381 instance=ExtResource("1_7moo8")]
 position = Vector2(376, 64)
 
-[node name="Garbage22" parent="Trash" unique_id=724793314 instance=ExtResource("1_7moo8")]
+[node name="Garbage22" parent="Garbage" unique_id=724793314 instance=ExtResource("1_7moo8")]
 position = Vector2(299, 93)
 
-[node name="Garbage23" parent="Trash" unique_id=692494729 instance=ExtResource("1_7moo8")]
+[node name="Garbage23" parent="Garbage" unique_id=692494729 instance=ExtResource("1_7moo8")]
 position = Vector2(299, 93)
 
-[node name="Garbage24" parent="Trash" unique_id=205105213 instance=ExtResource("1_7moo8")]
+[node name="Garbage24" parent="Garbage" unique_id=205105213 instance=ExtResource("1_7moo8")]
 position = Vector2(55, 157)
 
-[node name="Garbage25" parent="Trash" unique_id=1763393713 instance=ExtResource("1_7moo8")]
+[node name="Garbage25" parent="Garbage" unique_id=1763393713 instance=ExtResource("1_7moo8")]
 position = Vector2(101, 180)
 
-[node name="Garbage26" parent="Trash" unique_id=686281386 instance=ExtResource("1_7moo8")]
+[node name="Garbage26" parent="Garbage" unique_id=686281386 instance=ExtResource("1_7moo8")]
 position = Vector2(727, 482)
 
-[node name="Garbage27" parent="Trash" unique_id=3356091 instance=ExtResource("1_7moo8")]
+[node name="Garbage27" parent="Garbage" unique_id=3356091 instance=ExtResource("1_7moo8")]
 position = Vector2(569, 429)
 
-[node name="Garbage28" parent="Trash" unique_id=1105873859 instance=ExtResource("1_7moo8")]
+[node name="Garbage28" parent="Garbage" unique_id=1105873859 instance=ExtResource("1_7moo8")]
 position = Vector2(292, 314)
 
-[node name="Garbage29" parent="Trash" unique_id=1819266192 instance=ExtResource("1_7moo8")]
+[node name="Garbage29" parent="Garbage" unique_id=1819266192 instance=ExtResource("1_7moo8")]
 position = Vector2(292, 314)
 
 [node name="Water" type="Node" parent="." unique_id=1546201589]
@@ -274,7 +274,7 @@ offset_left = 428.0
 offset_top = 11.0
 offset_right = 533.0
 offset_bottom = 50.0
-theme_override_colors/font_color = Color(0.81960785, 0.6862745, 0.81960785, 0.9411765)
+theme_override_colors/font_color = Color(0, 0, 0, 0.9411765)
 theme_override_font_sizes/font_size = 15
 text = "Mop equipped"
 horizontal_alignment = 1
@@ -412,6 +412,6 @@ layout_mode = 2
 text = "Next Room
 "
 
-[connection signal="pressed" from="Care button/Care" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Care button/Care" to="." method="_on_care_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Mop" to="." method="_on_mop_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Trash" to="." method="_on_trash_pressed"]

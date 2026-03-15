@@ -45,12 +45,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
 theme_override_fonts/font = ExtResource("1_smi7l")
-theme_override_font_sizes/font_size = 35
-text = "Code, UI: mistlmxstl_ & tyawa
-Art: NesNesNes 
+theme_override_font_sizes/font_size = 30
+text = "- Code, UI: mistlmxstl_ & tyawa
+- Art: NesNesNes 
 
 Additional resources:
-\"Jersey 25\" from Google Fonts
+- \"Jersey 25\" from Google Fonts
+- 
 
 Clean, Clean, Clean! was made for Beyond Game Jam 2026 in 1 week.
 

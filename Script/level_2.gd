@@ -13,7 +13,7 @@ extends Node2D
 @onready var level_complete_panel: LevelCompletePanel = $CanvasLayer/LevelCompletePanel
 
 # CHANGE THIS to the real next scene
-@export var next_level_scene: PackedScene
+@export var next_level_scene: PackedScene = preload("res://Levels/thank_you_page.tscn")
 
 const CARE_FLICKER_START: float = 50.0
 const CARE_LOCK_DISTORTED: float = 15.0
@@ -97,7 +97,8 @@ func _process(delta: float) -> void:
 			flicker_show_distorted = !flicker_show_distorted
 			_set_distorted_room(flicker_show_distorted)
 
-func _on_button_3_pressed() -> void:
+
+func _on_care_pressed() -> void:
 	if care_popup.is_open():
 		return
 	if game_over_panel != null and game_over_panel.visible:
