@@ -10,11 +10,22 @@
 [ext_resource type="Texture2D" uid="uid://1ll0o2l4sd0x" path="res://Assets/UI/Mop button.png" id="6_bu6x3"]
 [ext_resource type="PackedScene" uid="uid://dk7x2i6d6ckl5" path="res://Assets/Water/Water.tscn" id="7_bu6x3"]
 [ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_365w1"]
-[ext_resource type="Script" uid="uid://dp3pe4a045d8p" path="res://Levels/care_popup.gd" id="11_n48tk"]
-[ext_resource type="Script" uid="uid://dsyt1ym73de5v" path="res://Levels/game_over_panel.gd" id="12_qfol3"]
-[ext_resource type="Script" uid="uid://q02ixgdtuiaa" path="res://Levels/level_complete_panel.gd" id="13_01go3"]
+[ext_resource type="Script" path="res://Levels/care_popup.gd" id="11_n48tk"]
+[ext_resource type="Script" path="res://Levels/game_over_panel.gd" id="12_qfol3"]
+[ext_resource type="Script" path="res://Levels/level_complete_panel.gd" id="13_01go3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n48tk"]
+bg_color = Color(0.64929366, 0.53113973, 0.4508716, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01go3"]
 bg_color = Color(0.8901961, 0.21960784, 0.21960784, 1)
 
 [node name="Level 1" type="Node2D" unique_id=740281537]
@@ -269,24 +280,22 @@ text = "Mop equipped"
 horizontal_alignment = 1
 
 [node name="CareBar" type="ProgressBar" parent="CanvasLayer" unique_id=833040366]
-offset_left = 17.0
-offset_top = 8.0
-offset_right = 412.0
-offset_bottom = 35.0
+offset_left = 25.0
+offset_top = 11.0
+offset_right = 414.0
+offset_bottom = 36.0
 theme_override_styles/background = SubResource("StyleBoxFlat_n48tk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_01go3")
 value = 100.0
 
 [node name="Heart(full)" type="Sprite2D" parent="CanvasLayer/CareBar" unique_id=1352826630]
 z_index = 31
-position = Vector2(6, 13)
+position = Vector2(-1.9999995, 10)
+scale = Vector2(1.0405405, 1.0405406)
 texture = ExtResource("10_365w1")
 
-[node name="CareLabel" type="Label" parent="CanvasLayer" unique_id=894058356]
-visible = false
-offset_right = 40.0
-offset_bottom = 23.0
-
 [node name="DistortionOverlay" type="ColorRect" parent="CanvasLayer" unique_id=1317681800]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

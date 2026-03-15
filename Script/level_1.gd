@@ -3,7 +3,6 @@ extends Node2D
 @onready var game_manager: Node = %GameManager
 @onready var tool_notification: Label = $CanvasLayer/ToolNotification
 @onready var care_bar: ProgressBar = $CanvasLayer/CareBar
-@onready var care_label: Label = $CanvasLayer/CareLabel
 @onready var distortion_overlay: ColorRect = $CanvasLayer/DistortionOverlay
 @onready var care_popup: CarePopup = $CanvasLayer/CarePopup
 @onready var game_over_panel: GameOverPanel = $CanvasLayer/GameOverPanel
@@ -55,7 +54,6 @@ func _ready() -> void:
 
 	tool_notification.visible = true
 	care_bar.visible = true
-	care_label.visible = true
 
 	distortion_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
@@ -154,7 +152,6 @@ func _on_level_completed() -> void:
 
 	tool_notification.visible = false
 	care_bar.visible = false
-	care_label.visible = false
 
 	if level_complete_panel != null:
 		level_complete_panel.show_panel()
@@ -168,7 +165,6 @@ func _on_next_level_pressed() -> void:
 func _on_care_changed(current_care: float, max_care: float, distortion_strength: float, chaos_strength: float) -> void:
 	care_bar.max_value = max_care
 	care_bar.value = current_care
-	care_label.text = "Care: " + str(int(ceil(current_care))) + " / " + str(int(max_care))
 
 	var alpha: float = distortion_strength * 0.35
 	var red: float = 0.2 + chaos_strength * 0.4
@@ -277,7 +273,6 @@ func _on_game_over() -> void:
 
 	tool_notification.visible = false
 	care_bar.visible = false
-	care_label.visible = false
 	distortion_overlay.color = Color(0.35, 0.0, 0.0, 0.45)
 
 	if game_over_panel != null:
