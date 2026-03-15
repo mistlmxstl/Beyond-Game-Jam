@@ -11,8 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://dk7x2i6d6ckl5" path="res://Assets/Water/Water.tscn" id="8_f42k6"]
 [ext_resource type="Texture2D" uid="uid://cjcgevca27jo7" path="res://Assets/Kitchen and living room/Journal_living room.png" id="9_f42k6"]
 [ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_77drm"]
+<<<<<<< Updated upstream
 [ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="10_bc6el"]
 [ext_resource type="Script" uid="uid://0wmo2svux74" path="res://Levels/canvas_layer_lvl2.gd" id="10_pbgmx"]
+=======
+[ext_resource type="Script" uid="uid://bykbtspti81px" path="res://Levels/canvas_layer.gd" id="10_bc6el"]
+>>>>>>> Stashed changes
 [ext_resource type="Script" uid="uid://dp3pe4a045d8p" path="res://Levels/care_popup.gd" id="11_n051j"]
 [ext_resource type="Script" path="res://Levels/game_over_panel.gd" id="12_bxu3j"]
 [ext_resource type="Script" uid="uid://q02ixgdtuiaa" path="res://Levels/level_complete_panel.gd" id="13_kehvb"]
@@ -435,7 +439,11 @@ mouse_filter = 2
 texture = ExtResource("5_rfkf8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1577835345]
+<<<<<<< Updated upstream
 script = ExtResource("10_pbgmx")
+=======
+script = ExtResource("10_bc6el")
+>>>>>>> Stashed changes
 
 [node name="ToolNotification" type="Label" parent="CanvasLayer" unique_id=1708112773]
 visible = false
@@ -724,6 +732,57 @@ theme_override_fonts/font = ExtResource("10_bc6el")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_tkprm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kgwih")
+text = "| |"
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1157168919]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DarkBg" type="ColorRect" parent="CanvasLayer/PauseMenu" unique_id=1270197242]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.57254905)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu" unique_id=1671389358]
+layout_mode = 0
+offset_right = 780.0
+offset_bottom = 597.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Panel" unique_id=2066131378]
+layout_mode = 0
+offset_left = 369.0
+offset_top = 250.0
+offset_right = 459.0
+offset_bottom = 351.0
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1635222804]
+layout_mode = 2
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1154129868]
+layout_mode = 2
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1726530362]
+layout_mode = 2
+text = "Quit"
+
+[node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=380794216]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -30.0
+offset_bottom = 31.0
+grow_horizontal = 0
 text = "| |"
 
 [node name="Journal" type="Area2D" parent="." unique_id=1747405220]

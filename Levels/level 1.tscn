@@ -12,12 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_365w1"]
 [ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="10_m8set"]
 [ext_resource type="Script" uid="uid://dp3pe4a045d8p" path="res://Levels/care_popup.gd" id="11_n48tk"]
-[ext_resource type="Script" path="res://Levels/game_over_panel.gd" id="12_qfol3"]
+[ext_resource type="Script" uid="uid://dsyt1ym73de5v" path="res://Levels/game_over_panel.gd" id="12_qfol3"]
 [ext_resource type="Script" uid="uid://q02ixgdtuiaa" path="res://Levels/level_complete_panel.gd" id="13_01go3"]
-[ext_resource type="Script" path="res://Levels/journal_popup.gd" id="14_atwgk"]
+[ext_resource type="Script" uid="uid://vmxd7p6ffs16" path="res://Levels/journal_popup.gd" id="14_atwgk"]
 [ext_resource type="Texture2D" uid="uid://bd6xpqiiupui8" path="res://Assets/Bedroom/Journal_bedroom.png" id="15_104fb"]
 [ext_resource type="Texture2D" uid="uid://bj0g1t2712fas" path="res://Assets/UI/X button.png" id="16_104fb"]
 [ext_resource type="Script" uid="uid://bqool75s6iqcm" path="res://Levels/journal.gd" id="16_m8set"]
+[ext_resource type="AudioStream" uid="uid://bjr24y105aqua" path="res://Songs/main.mp3" id="17_m8set"]
+[ext_resource type="AudioStream" uid="uid://dbjrw54mt8jrh" path="res://Songs/danger.mp3" id="18_dwgkd"]
 
 [sub_resource type="GDScript" id="GDScript_atwgk"]
 script/source = "extends CanvasLayer
@@ -745,6 +747,12 @@ texture = ExtResource("15_104fb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Journal" unique_id=949730029]
 position = Vector2(111.5, 478.03546)
 shape = SubResource("RectangleShape2D_dwgkd")
+
+[node name="CalmMusic" type="AudioStreamPlayer" parent="." unique_id=139238159]
+stream = ExtResource("17_m8set")
+
+[node name="StressMusic" type="AudioStreamPlayer" parent="." unique_id=644357051]
+stream = ExtResource("18_dwgkd")
 
 [connection signal="pressed" from="Care button/Care" to="." method="_on_care_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Mop" to="." method="_on_mop_pressed"]

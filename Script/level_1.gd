@@ -14,13 +14,21 @@ extends Node2D
 @onready var journal_popup = $CanvasLayer/JournalPopup
 @onready var close_button = $CanvasLayer/JournalPopup/CloseButton
 
-const NEXT_LEVEL_SCENE := preload("res://Levels/level 2.tscn")
+@onready var calm_music: AudioStreamPlayer = $CalmMusic
+@onready var stress_music: AudioStreamPlayer = $StressMusic
+
+const NEXT_LEVEL_SCENE := ("res://Levels/level 2.tscn")
 
 const CARE_FLICKER_START: float = 50.0
 const CARE_LOCK_DISTORTED: float = 15.0
 
 const FLICKER_SLOW_INTERVAL: float = 0.30
 const FLICKER_FAST_INTERVAL: float = 0.10
+
+const MUSIC_FADE_START: float = 50.0
+const MUSIC_SWITCH_POINT: float = 45.0
+const MUSIC_DIM_VOLUME: float = 0.25
+const MUSIC_FADE_SPEED: float = 5.0
 
 var cursor_mop = preload("res://Assets/UI/Mop button.png")
 var cursor_trash = preload("res://Assets/UI/Trash button.png")
@@ -39,6 +47,9 @@ var visual_transition_running := false
 var flicker_timer := 0.0
 var flicker_interval := FLICKER_SLOW_INTERVAL
 var flicker_show_distorted := false
+
+var calm_target_volume: float = 1.0
+var stress_target_volume: float = 0.0
 
 func _ready() -> void:
 	has_shown_popup_50 = false
@@ -90,6 +101,16 @@ func _ready() -> void:
 	journal_popup.mouse_filter = Control.MOUSE_FILTER_STOP
 	close_button.mouse_filter = Control.MOUSE_FILTER_STOP
 	close_button.pressed.connect(_on_close_pressed)
+
+	if calm_music != null:
+		calm_music.volume_db = linear_to_db(1.0)
+		if not calm_music.playing:
+			calm_music.play()
+
+	if stress_music != null:
+		stress_music.volume_db = -80.0
+		if stress_music.playing:
+			stress_music.stop()
 	
 func show_journal():
 	journal_popup.show()
@@ -100,6 +121,8 @@ func _on_close_pressed():
 	journal_popup.hide()
 
 func _process(delta: float) -> void:
+	_update_music_fade(delta)
+
 	if care_popup.is_open():
 		return
 
@@ -184,10 +207,12 @@ func _on_next_level_pressed() -> void:
 	call_deferred("_go_to_next_level")
 
 func _go_to_next_level() -> void:
-	var err := get_tree().change_scene_to_packed(NEXT_LEVEL_SCENE)
+	var err := get_tree().change_scene_to_file(NEXT_LEVEL_SCENE)
 	print("CHANGE SCENE RESULT: ", err)
 
 func _on_care_changed(current_care: float, max_care: float, distortion_strength: float, chaos_strength: float) -> void:
+	_update_music_targets(current_care)
+
 	care_bar.max_value = max_care
 	care_bar.value = current_care
 
@@ -308,3 +333,62 @@ func _on_game_over() -> void:
 func _on_try_again_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func _update_music_targets(current_care: float) -> void:
+	if current_care > MUSIC_FADE_START:
+		if calm_music != null and not calm_music.playing:
+			calm_music.play()
+
+		calm_target_volume = 1.0
+		stress_target_volume = 0.0
+
+	elif current_care > MUSIC_SWITCH_POINT:
+		if calm_music != null and not calm_music.playing:
+			calm_music.play()
+
+		var t: float = clampf(
+			inverse_lerp(MUSIC_FADE_START, MUSIC_SWITCH_POINT, current_care),
+			0.0,
+			1.0
+		)
+
+		calm_target_volume = lerpf(1.0, MUSIC_DIM_VOLUME, t)
+		stress_target_volume = 0.0
+
+	else:
+		if stress_music != null and not stress_music.playing:
+			stress_music.play()
+
+		calm_target_volume = 0.0
+		stress_target_volume = 1.0
+
+func _update_music_fade(delta: float) -> void:
+	if calm_music != null:
+		var calm_now: float = 0.0
+		if calm_music.volume_db > -79.0:
+			calm_now = db_to_linear(calm_music.volume_db)
+
+		calm_now = lerpf(calm_now, calm_target_volume, delta * MUSIC_FADE_SPEED)
+		_set_music_volume(calm_music, calm_now)
+
+		if calm_target_volume <= 0.001 and calm_now <= 0.01 and calm_music.playing:
+			calm_music.stop()
+
+	if stress_music != null:
+		var stress_now: float = 0.0
+		if stress_music.volume_db > -79.0:
+			stress_now = db_to_linear(stress_music.volume_db)
+
+		stress_now = lerpf(stress_now, stress_target_volume, delta * MUSIC_FADE_SPEED)
+		_set_music_volume(stress_music, stress_now)
+
+		if stress_target_volume <= 0.001 and stress_now <= 0.01 and stress_music.playing:
+			stress_music.stop()
+
+func _set_music_volume(player: AudioStreamPlayer, value: float) -> void:
+	value = clampf(value, 0.0, 1.0)
+
+	if value <= 0.001:
+		player.volume_db = -80.0
+	else:
+		player.volume_db = linear_to_db(value)
