@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_365w1"]
 [ext_resource type="Script" uid="uid://dp3pe4a045d8p" path="res://Levels/care_popup.gd" id="11_n48tk"]
 [ext_resource type="Script" uid="uid://dsyt1ym73de5v" path="res://Levels/game_over_panel.gd" id="12_qfol3"]
+[ext_resource type="Script" uid="uid://q02ixgdtuiaa" path="res://Levels/level_complete_panel.gd" id="13_01go3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n48tk"]
 bg_color = Color(0.8901961, 0.21960784, 0.21960784, 1)
@@ -360,6 +361,46 @@ Take a breath and try again."
 custom_minimum_size = Vector2(180, 44)
 layout_mode = 2
 text = "Try Again"
+
+[node name="LevelCompletePanel" type="ColorRect" parent="CanvasLayer" unique_id=370209421]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.003921569)
+script = ExtResource("13_01go3")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/LevelCompletePanel" unique_id=2146061508]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/LevelCompletePanel/CenterContainer" unique_id=526245732]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer" unique_id=1814133154]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1607876516]
+layout_mode = 2
+text = "ROOM CLEAN"
+
+[node name="SubtitleLabel" type="Label" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1429511917]
+layout_mode = 2
+text = "The room feels lighter now. Let's keep going.
+Ready for the next room?"
+
+[node name="NextLevelButton" type="Button" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=987287259]
+custom_minimum_size = Vector2(180, 44)
+layout_mode = 2
+text = "Next Room
+"
 
 [connection signal="pressed" from="Care button/Care" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Mop" to="." method="_on_mop_pressed"]

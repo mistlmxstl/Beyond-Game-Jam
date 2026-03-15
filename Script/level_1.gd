@@ -11,6 +11,10 @@ extends Node2D
 @onready var normal_room: Node2D = $Environment
 @onready var distorted_room: Node2D = $DistortedEnvironment
 
+@onready var level_complete_panel: LevelCompletePanel = $CanvasLayer/LevelCompletePanel
+
+const NEXT_LEVEL_PATH: String = "res://Levels/level_2.tscn"
+
 const CARE_FLICKER_START: float = 50.0
 const CARE_LOCK_DISTORTED: float = 15.0
 
@@ -58,6 +62,10 @@ func _ready() -> void:
 	if game_over_panel != null:
 		game_over_panel.hide_panel()
 		game_over_panel.try_again_pressed.connect(_on_try_again_pressed)
+	
+	if level_complete_panel != null:
+		level_complete_panel.hide_panel()
+		level_complete_panel.next_level_pressed.connect(_on_next_level_pressed)
 
 	care_popup.popup_closed.connect(_on_popup_closed)
 
@@ -94,6 +102,8 @@ func _on_button_3_pressed() -> void:
 		return
 	if game_over_panel != null and game_over_panel.visible:
 		return
+	if level_complete_panel != null and level_complete_panel.visible:
+		return
 	game_manager.start_break()
 
 func _on_mop_pressed() -> void:
@@ -101,12 +111,16 @@ func _on_mop_pressed() -> void:
 		return
 	if game_over_panel != null and game_over_panel.visible:
 		return
+	if level_complete_panel != null and level_complete_panel.visible:
+		return
 	game_manager.set_tool("Mop")
 
 func _on_trash_pressed() -> void:
 	if care_popup.is_open():
 		return
 	if game_over_panel != null and game_over_panel.visible:
+		return
+	if level_complete_panel != null and level_complete_panel.visible:
 		return
 	game_manager.set_tool("Trash bag")
 
@@ -136,7 +150,20 @@ func _show_notification(message: String) -> void:
 	tween.tween_property(tool_notification, "modulate:a", 0.0, 0.5)
 
 func _on_level_completed() -> void:
-	_show_notification("All clean! Next level unlocked")
+	Input.set_custom_mouse_cursor(null)
+
+	tool_notification.visible = false
+	care_bar.visible = false
+	care_label.visible = false
+
+	if level_complete_panel != null:
+		level_complete_panel.show_panel()
+
+	get_tree().paused = true
+
+func _on_next_level_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file(NEXT_LEVEL_PATH)
 
 func _on_care_changed(current_care: float, max_care: float, distortion_strength: float, chaos_strength: float) -> void:
 	care_bar.max_value = max_care
