@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://qgjoq56fr62f"]
 
 [ext_resource type="Script" uid="uid://3woeasbsr8sm" path="res://Script/tutorial.gd" id="1_8qlnc"]
+[ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="2_nhn8q"]
+[ext_resource type="Texture2D" uid="uid://bv0bglu7fn52y" path="res://Assets/UI/Trash button.png" id="3_ixs1y"]
+[ext_resource type="Texture2D" uid="uid://1ll0o2l4sd0x" path="res://Assets/UI/Mop button.png" id="4_o4sb5"]
+[ext_resource type="Texture2D" uid="uid://daht6hdsd2fhi" path="res://Assets/UI/Care button.png" id="5_tqhs8"]
 
 [node name="Tutorial" type="Control" unique_id=1157606688]
 layout_mode = 3
@@ -13,21 +17,142 @@ script = ExtResource("1_8qlnc")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=99246739]
 z_index = -1
-layout_mode = 0
-offset_left = -8.0
-offset_top = -13.0
-offset_right = 910.0
-offset_bottom = 613.0
-mouse_filter = 2
-color = Color(0.334659, 0.40246812, 0.39964002, 1)
-
-[node name="Button" type="Button" parent="." unique_id=422431757]
 layout_mode = 1
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 158.0
-offset_bottom = 91.0
-theme_override_font_sizes/font_size = 40
-text = "Back"
+anchors_preset = -1
+anchor_right = 0.9974127
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Heading" type="Label" parent="." unique_id=714304987]
+layout_mode = 0
+offset_right = 768.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("2_nhn8q")
+theme_override_font_sizes/font_size = 50
+text = "Your place is a Mess!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Objective" type="Label" parent="." unique_id=921665303]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.25
+offset_top = -205.0
+offset_right = 359.25
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("2_nhn8q")
+theme_override_font_sizes/font_size = 35
+text = "Throw all the trash and mop the floors, but watch out for your wellbeing or weird things might start to happen..."
+horizontal_alignment = 3
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Heading2" type="Label" parent="." unique_id=1899800400]
+layout_mode = 0
+offset_top = 217.0
+offset_right = 768.0
+offset_bottom = 309.0
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("2_nhn8q")
+theme_override_font_sizes/font_size = 50
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrashButton" type="Sprite2D" parent="." unique_id=2006266048]
+position = Vector2(172, 375)
+scale = Vector2(3.2800012, 3.2800012)
+texture = ExtResource("3_ixs1y")
+
+[node name="Controls" type="Label" parent="." unique_id=1242630801]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.5
+offset_top = 149.72006
+offset_right = -150.5
+offset_bottom = 175.72006
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("2_nhn8q")
+theme_override_font_sizes/font_size = 25
+text = "Throw trash"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="MopButton" type="Sprite2D" parent="." unique_id=1827102626]
+position = Vector2(383, 375)
+scale = Vector2(3.2800012, 3.2800012)
+texture = ExtResource("4_o4sb5")
+
+[node name="Controls2" type="Label" parent="." unique_id=1422917717]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.5
+offset_top = 150.72006
+offset_right = 59.5
+offset_bottom = 205.7201
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("2_nhn8q")
+theme_override_font_sizes/font_size = 25
+text = "Clean water puddles"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CareButton" type="Sprite2D" parent="." unique_id=10993513]
+position = Vector2(595, 375)
+scale = Vector2(3.2753267, 3.2753267)
+texture = ExtResource("5_tqhs8")
+
+[node name="Controls3" type="Label" parent="." unique_id=848888814]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 87.5
+offset_top = 151.72006
+offset_right = 333.5
+offset_bottom = 235.7201
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("2_nhn8q")
+theme_override_font_sizes/font_size = 25
+text = "Take breaks
+(Increases wellbeing )"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Heading3" type="Label" parent="." unique_id=742760870]
+layout_mode = 0
+offset_top = 508.0
+offset_right = 768.0
+offset_bottom = 600.0
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("2_nhn8q")
+theme_override_font_sizes/font_size = 50
+text = "Click to Continue..."
+horizontal_alignment = 1
+vertical_alignment = 1

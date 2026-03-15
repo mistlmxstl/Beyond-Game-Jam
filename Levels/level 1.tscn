@@ -5,10 +5,195 @@
 [ext_resource type="Script" uid="uid://4jhntrxeocxe" path="res://Script/level_1.gd" id="1_p48sa"]
 [ext_resource type="Texture2D" uid="uid://davigw055rqob" path="res://Assets/Bedroom/Background_bedroom.png" id="2_7moo8"]
 [ext_resource type="PackedScene" uid="uid://d4ne07e2dk0kh" path="res://Assets/Bedroom/Furniture.tscn" id="4_a63mx"]
-[ext_resource type="Texture2D" uid="uid://3xfqohgbf4sl" path="res://Assets/UI/Care button.png" id="5_1bp41"]
+[ext_resource type="Texture2D" uid="uid://daht6hdsd2fhi" path="res://Assets/UI/Care button.png" id="5_1bp41"]
 [ext_resource type="Texture2D" uid="uid://bv0bglu7fn52y" path="res://Assets/UI/Trash button.png" id="5_oalwn"]
 [ext_resource type="Texture2D" uid="uid://1ll0o2l4sd0x" path="res://Assets/UI/Mop button.png" id="6_bu6x3"]
 [ext_resource type="PackedScene" uid="uid://dk7x2i6d6ckl5" path="res://Assets/Water/Water.tscn" id="7_bu6x3"]
+[ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_365w1"]
+[ext_resource type="FontFile" uid="uid://tkx8dhl02fq2" path="res://Assets/UI/Jersey25-Regular.ttf" id="10_m8set"]
+[ext_resource type="Script" uid="uid://dp3pe4a045d8p" path="res://Levels/care_popup.gd" id="11_n48tk"]
+[ext_resource type="Script" path="res://Levels/game_over_panel.gd" id="12_qfol3"]
+[ext_resource type="Script" uid="uid://q02ixgdtuiaa" path="res://Levels/level_complete_panel.gd" id="13_01go3"]
+[ext_resource type="Script" path="res://Levels/journal_popup.gd" id="14_atwgk"]
+[ext_resource type="Texture2D" uid="uid://bd6xpqiiupui8" path="res://Assets/Bedroom/Journal_bedroom.png" id="15_104fb"]
+[ext_resource type="Texture2D" uid="uid://bj0g1t2712fas" path="res://Assets/UI/X button.png" id="16_104fb"]
+[ext_resource type="Script" uid="uid://bqool75s6iqcm" path="res://Levels/journal.gd" id="16_m8set"]
+
+[sub_resource type="GDScript" id="GDScript_atwgk"]
+script/source = "extends CanvasLayer
+
+@onready var pause_button: Button = get_node_or_null(\"PauseButton\")
+@onready var pause_menu: Control = get_node_or_null(\"PauseMenu\")
+@onready var dark_bg: ColorRect = get_node_or_null(\"PauseMenu/DarkBg\")
+@onready var resume_button: Button = get_node_or_null(\"PauseMenu/Panel/VBoxContainer/ResumeButton\")
+@onready var restart_button: Button = get_node_or_null(\"PauseMenu/Panel/VBoxContainer/RestartButton\")
+@onready var quit_button: Button = get_node_or_null(\"PauseMenu/Panel/VBoxContainer/QuitButton\")
+
+func _ready() -> void:
+	if pause_button == null:
+		push_error(\"PauseButton not found\")
+		return
+	if pause_menu == null:
+		push_error(\"PauseMenu not found\")
+		return
+	if dark_bg == null:
+		push_error(\"PauseMenu/DarkBg not found\")
+		return
+	if resume_button == null:
+		push_error(\"ResumeButton not found\")
+		return
+	if restart_button == null:
+		push_error(\"RestartButton not found\")
+		return
+	if quit_button == null:
+		push_error(\"QuitButton not found\")
+		return
+	
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	pause_button.process_mode = Node.PROCESS_MODE_ALWAYS
+	pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
+	resume_button.process_mode = Node.PROCESS_MODE_ALWAYS
+	restart_button.process_mode = Node.PROCESS_MODE_ALWAYS
+	quit_button.process_mode = Node.PROCESS_MODE_ALWAYS
+
+	pause_menu.hide()
+
+	pause_button.mouse_filter = Control.MOUSE_FILTER_STOP
+	pause_menu.mouse_filter = Control.MOUSE_FILTER_STOP
+	dark_bg.mouse_filter = Control.MOUSE_FILTER_STOP
+	resume_button.mouse_filter = Control.MOUSE_FILTER_STOP
+	restart_button.mouse_filter = Control.MOUSE_FILTER_STOP
+	quit_button.mouse_filter = Control.MOUSE_FILTER_STOP
+
+	if not pause_button.pressed.is_connected(_on_pause_button_pressed):
+		pause_button.pressed.connect(_on_pause_button_pressed)
+
+	if not resume_button.pressed.is_connected(_on_resume_button_pressed):
+		resume_button.pressed.connect(_on_resume_button_pressed)
+
+	if not restart_button.pressed.is_connected(_on_restart_button_pressed):
+		restart_button.pressed.connect(_on_restart_button_pressed)
+
+	if not quit_button.pressed.is_connected(_on_quit_button_pressed):
+		quit_button.pressed.connect(_on_quit_button_pressed)
+
+func _on_pause_button_pressed() -> void:
+	pause_menu.show()
+	get_tree().paused = true
+
+func _on_resume_button_pressed() -> void:
+	get_tree().paused = false
+	pause_menu.hide()
+
+func _on_restart_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+func _on_quit_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file(\"res://Levels/Main_menu.tscn\")
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n48tk"]
+bg_color = Color(0.64929366, 0.53113973, 0.4508716, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01go3"]
+bg_color = Color(0.8901961, 0.21960784, 0.21960784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oir2b"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mm7d"]
+bg_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76l1h"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vupbn"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2060p"]
+bg_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yst4"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8set"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3tkx"]
+bg_color = Color(0.5411765, 0.2, 0.019607844, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwgkd"]
+bg_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2mh0"]
+bg_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgkd"]
+size = Vector2(43, 53.929077)
 
 [node name="Level 1" type="Node2D" unique_id=740281537]
 script = ExtResource("1_p48sa")
@@ -24,9 +209,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 534.0
-offset_top = 509.0
-offset_right = 672.0
+offset_left = 6.0
+offset_top = 508.99997
+offset_right = 144.0
 offset_bottom = 560.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -64,123 +249,123 @@ layout_mode = 2
 icon = ExtResource("5_oalwn")
 icon_alignment = 1
 
-[node name="Trash" type="Node" parent="." unique_id=754426353]
+[node name="Garbage" type="Node" parent="." unique_id=754426353]
 
-[node name="Garbage" parent="Trash" unique_id=422682489 instance=ExtResource("1_7moo8")]
+[node name="Garbage" parent="Garbage" unique_id=422682489 instance=ExtResource("1_7moo8")]
 position = Vector2(577, 151)
 
-[node name="Garbage35" parent="Trash" unique_id=564513714 instance=ExtResource("1_7moo8")]
+[node name="Garbage35" parent="Garbage" unique_id=564513714 instance=ExtResource("1_7moo8")]
 position = Vector2(573, 108)
 
-[node name="Garbage36" parent="Trash" unique_id=1173884310 instance=ExtResource("1_7moo8")]
+[node name="Garbage36" parent="Garbage" unique_id=1173884310 instance=ExtResource("1_7moo8")]
 position = Vector2(607, 114)
 
-[node name="Garbage2" parent="Trash" unique_id=713419458 instance=ExtResource("1_7moo8")]
+[node name="Garbage2" parent="Garbage" unique_id=713419458 instance=ExtResource("1_7moo8")]
 position = Vector2(189, 132)
 
-[node name="Garbage3" parent="Trash" unique_id=112721293 instance=ExtResource("1_7moo8")]
+[node name="Garbage3" parent="Garbage" unique_id=112721293 instance=ExtResource("1_7moo8")]
 position = Vector2(243, 145)
 
-[node name="Garbage4" parent="Trash" unique_id=381003542 instance=ExtResource("1_7moo8")]
+[node name="Garbage4" parent="Garbage" unique_id=381003542 instance=ExtResource("1_7moo8")]
 position = Vector2(181, 257)
 
-[node name="Garbage5" parent="Trash" unique_id=971044697 instance=ExtResource("1_7moo8")]
+[node name="Garbage5" parent="Garbage" unique_id=971044697 instance=ExtResource("1_7moo8")]
 position = Vector2(652, 131)
 
-[node name="Garbage6" parent="Trash" unique_id=1363524683 instance=ExtResource("1_7moo8")]
+[node name="Garbage6" parent="Garbage" unique_id=1363524683 instance=ExtResource("1_7moo8")]
 position = Vector2(749, 119)
 
-[node name="Garbage7" parent="Trash" unique_id=467184676 instance=ExtResource("1_7moo8")]
+[node name="Garbage7" parent="Garbage" unique_id=467184676 instance=ExtResource("1_7moo8")]
 position = Vector2(711, 146)
 
-[node name="Garbage8" parent="Trash" unique_id=785564249 instance=ExtResource("1_7moo8")]
+[node name="Garbage8" parent="Garbage" unique_id=785564249 instance=ExtResource("1_7moo8")]
 position = Vector2(744, 187)
 
-[node name="Garbage37" parent="Trash" unique_id=497318553 instance=ExtResource("1_7moo8")]
+[node name="Garbage37" parent="Garbage" unique_id=497318553 instance=ExtResource("1_7moo8")]
 position = Vector2(721, 230)
 
-[node name="Garbage38" parent="Trash" unique_id=62429877 instance=ExtResource("1_7moo8")]
+[node name="Garbage38" parent="Garbage" unique_id=62429877 instance=ExtResource("1_7moo8")]
 position = Vector2(494, 139)
 
-[node name="Garbage39" parent="Trash" unique_id=954164319 instance=ExtResource("1_7moo8")]
+[node name="Garbage39" parent="Garbage" unique_id=954164319 instance=ExtResource("1_7moo8")]
 position = Vector2(525, 226)
 
-[node name="Garbage9" parent="Trash" unique_id=1744002823 instance=ExtResource("1_7moo8")]
+[node name="Garbage9" parent="Garbage" unique_id=1744002823 instance=ExtResource("1_7moo8")]
 position = Vector2(213, 409)
 
-[node name="Garbage10" parent="Trash" unique_id=1437631514 instance=ExtResource("1_7moo8")]
+[node name="Garbage10" parent="Garbage" unique_id=1437631514 instance=ExtResource("1_7moo8")]
 position = Vector2(233, 455)
 
-[node name="Garbage33" parent="Trash" unique_id=595818242 instance=ExtResource("1_7moo8")]
+[node name="Garbage33" parent="Garbage" unique_id=595818242 instance=ExtResource("1_7moo8")]
 position = Vector2(207, 482)
 
-[node name="Garbage34" parent="Trash" unique_id=919646514 instance=ExtResource("1_7moo8")]
+[node name="Garbage34" parent="Garbage" unique_id=919646514 instance=ExtResource("1_7moo8")]
 position = Vector2(193, 515)
 
-[node name="Garbage11" parent="Trash" unique_id=1926041971 instance=ExtResource("1_7moo8")]
+[node name="Garbage11" parent="Garbage" unique_id=1926041971 instance=ExtResource("1_7moo8")]
 position = Vector2(103, 454)
 
-[node name="Garbage30" parent="Trash" unique_id=253808489 instance=ExtResource("1_7moo8")]
-position = Vector2(95, 483)
+[node name="Garbage30" parent="Garbage" unique_id=253808489 instance=ExtResource("1_7moo8")]
+position = Vector2(123, 488)
 
-[node name="Garbage31" parent="Trash" unique_id=1545248583 instance=ExtResource("1_7moo8")]
+[node name="Garbage31" parent="Garbage" unique_id=1545248583 instance=ExtResource("1_7moo8")]
 position = Vector2(45, 341)
 
-[node name="Garbage32" parent="Trash" unique_id=590755796 instance=ExtResource("1_7moo8")]
+[node name="Garbage32" parent="Garbage" unique_id=590755796 instance=ExtResource("1_7moo8")]
 position = Vector2(88, 362)
 
-[node name="Garbage12" parent="Trash" unique_id=1209129230 instance=ExtResource("1_7moo8")]
+[node name="Garbage12" parent="Garbage" unique_id=1209129230 instance=ExtResource("1_7moo8")]
 position = Vector2(30, 454)
 
-[node name="Garbage13" parent="Trash" unique_id=2093085440 instance=ExtResource("1_7moo8")]
+[node name="Garbage13" parent="Garbage" unique_id=2093085440 instance=ExtResource("1_7moo8")]
 position = Vector2(292, 564)
 
-[node name="Garbage14" parent="Trash" unique_id=624806669 instance=ExtResource("1_7moo8")]
+[node name="Garbage14" parent="Garbage" unique_id=624806669 instance=ExtResource("1_7moo8")]
 position = Vector2(356, 502)
 
-[node name="Garbage15" parent="Trash" unique_id=327271998 instance=ExtResource("1_7moo8")]
+[node name="Garbage15" parent="Garbage" unique_id=327271998 instance=ExtResource("1_7moo8")]
 position = Vector2(700, 312)
 
-[node name="Garbage16" parent="Trash" unique_id=1616568537 instance=ExtResource("1_7moo8")]
+[node name="Garbage16" parent="Garbage" unique_id=1616568537 instance=ExtResource("1_7moo8")]
 position = Vector2(730, 346)
 
-[node name="Garbage17" parent="Trash" unique_id=1343054901 instance=ExtResource("1_7moo8")]
+[node name="Garbage17" parent="Garbage" unique_id=1343054901 instance=ExtResource("1_7moo8")]
 position = Vector2(658, 375)
 
-[node name="Garbage18" parent="Trash" unique_id=205241463 instance=ExtResource("1_7moo8")]
+[node name="Garbage18" parent="Garbage" unique_id=205241463 instance=ExtResource("1_7moo8")]
 position = Vector2(377, 319)
 
-[node name="Garbage19" parent="Trash" unique_id=1348085556 instance=ExtResource("1_7moo8")]
+[node name="Garbage19" parent="Garbage" unique_id=1348085556 instance=ExtResource("1_7moo8")]
 position = Vector2(416, 358)
 
-[node name="Garbage20" parent="Trash" unique_id=424359480 instance=ExtResource("1_7moo8")]
+[node name="Garbage20" parent="Garbage" unique_id=424359480 instance=ExtResource("1_7moo8")]
 position = Vector2(454, 128)
 
-[node name="Garbage21" parent="Trash" unique_id=2086852381 instance=ExtResource("1_7moo8")]
+[node name="Garbage21" parent="Garbage" unique_id=2086852381 instance=ExtResource("1_7moo8")]
 position = Vector2(376, 64)
 
-[node name="Garbage22" parent="Trash" unique_id=724793314 instance=ExtResource("1_7moo8")]
+[node name="Garbage22" parent="Garbage" unique_id=724793314 instance=ExtResource("1_7moo8")]
 position = Vector2(299, 93)
 
-[node name="Garbage23" parent="Trash" unique_id=692494729 instance=ExtResource("1_7moo8")]
+[node name="Garbage23" parent="Garbage" unique_id=692494729 instance=ExtResource("1_7moo8")]
 position = Vector2(299, 93)
 
-[node name="Garbage24" parent="Trash" unique_id=205105213 instance=ExtResource("1_7moo8")]
+[node name="Garbage24" parent="Garbage" unique_id=205105213 instance=ExtResource("1_7moo8")]
 position = Vector2(55, 157)
 
-[node name="Garbage25" parent="Trash" unique_id=1763393713 instance=ExtResource("1_7moo8")]
+[node name="Garbage25" parent="Garbage" unique_id=1763393713 instance=ExtResource("1_7moo8")]
 position = Vector2(101, 180)
 
-[node name="Garbage26" parent="Trash" unique_id=686281386 instance=ExtResource("1_7moo8")]
+[node name="Garbage26" parent="Garbage" unique_id=686281386 instance=ExtResource("1_7moo8")]
 position = Vector2(727, 482)
 
-[node name="Garbage27" parent="Trash" unique_id=3356091 instance=ExtResource("1_7moo8")]
+[node name="Garbage27" parent="Garbage" unique_id=3356091 instance=ExtResource("1_7moo8")]
 position = Vector2(569, 429)
 
-[node name="Garbage28" parent="Trash" unique_id=1105873859 instance=ExtResource("1_7moo8")]
+[node name="Garbage28" parent="Garbage" unique_id=1105873859 instance=ExtResource("1_7moo8")]
 position = Vector2(292, 314)
 
-[node name="Garbage29" parent="Trash" unique_id=1819266192 instance=ExtResource("1_7moo8")]
+[node name="Garbage29" parent="Garbage" unique_id=1819266192 instance=ExtResource("1_7moo8")]
 position = Vector2(292, 314)
 
 [node name="Water" type="Node" parent="." unique_id=1546201589]
@@ -219,7 +404,7 @@ position = Vector2(519, 336)
 [node name="Sprite2D10" parent="Water" unique_id=146930673 instance=ExtResource("7_bu6x3")]
 position = Vector2(380, 419)
 
-[node name="Environment" type="Node" parent="." unique_id=1469056383]
+[node name="Environment" type="Node2D" parent="." unique_id=1997813095]
 
 [node name="Furnitures" parent="Environment" unique_id=364292589 instance=ExtResource("4_a63mx")]
 z_index = -1
@@ -233,6 +418,334 @@ offset_bottom = 600.0
 mouse_filter = 2
 texture = ExtResource("2_7moo8")
 
-[connection signal="pressed" from="Care button/Care" to="." method="_on_button_3_pressed"]
+[node name="DistortedEnvironment" type="Node2D" parent="." unique_id=633339431]
+
+[node name="Furnitures" parent="DistortedEnvironment" unique_id=893663617 instance=ExtResource("4_a63mx")]
+z_index = -1
+position = Vector2(386.75, 299.5)
+scale = Vector2(1.7840647, 1.7827381)
+frame = 1
+
+[node name="Bg" type="TextureRect" parent="DistortedEnvironment" unique_id=905639804]
+z_index = -3
+offset_right = 773.2143
+offset_bottom = 600.0
+mouse_filter = 2
+texture = ExtResource("2_7moo8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1416021520]
+process_mode = 2
+script = SubResource("GDScript_atwgk")
+
+[node name="ToolNotification" type="Label" parent="CanvasLayer" unique_id=1249465842]
+visible = false
+offset_left = 420.0
+offset_top = 11.0
+offset_right = 525.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0, 0, 0, 0.9411765)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 15
+text = "Mop equipped"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CareBar" type="ProgressBar" parent="CanvasLayer" unique_id=833040366]
+offset_left = 25.0
+offset_top = 11.0
+offset_right = 414.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_styles/background = SubResource("StyleBoxFlat_n48tk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_01go3")
+value = 100.0
+
+[node name="Heart(full)" type="Sprite2D" parent="CanvasLayer/CareBar" unique_id=1352826630]
+z_index = 31
+position = Vector2(-1.9999995, 10)
+scale = Vector2(1.0405405, 1.0405406)
+texture = ExtResource("10_365w1")
+
+[node name="DistortionOverlay" type="ColorRect" parent="CanvasLayer" unique_id=1317681800]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -1.0
+offset_right = -3.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.99236816, 0.8784709, 0.9586441, 1)
+
+[node name="CarePopup" type="Control" parent="CanvasLayer" unique_id=88637977]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_n48tk")
+
+[node name="PopupImage" type="TextureRect" parent="CanvasLayer/CarePopup" unique_id=267611129]
+custom_minimum_size = Vector2(350, 240)
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 240.0
+expand_mode = 5
+stretch_mode = 4
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/CarePopup/PopupImage" unique_id=1592587876]
+layout_mode = 0
+offset_right = 31.0
+offset_bottom = 31.0
+icon = ExtResource("16_104fb")
+flat = true
+
+[node name="GameOverPanel" type="ColorRect" parent="CanvasLayer" unique_id=598326994]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.003921569)
+script = ExtResource("12_qfol3")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/GameOverPanel" unique_id=1804610956]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/GameOverPanel/CenterContainer" unique_id=877845493]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oir2b")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer" unique_id=2042207741]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1625533114]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1523869238]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+text = "You pushed yourself too far.
+Take a breath and try again."
+horizontal_alignment = 1
+
+[node name="TryAgainButton" type="Button" parent="CanvasLayer/GameOverPanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=960160238]
+custom_minimum_size = Vector2(180, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_colors/font_hover_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_5mm7d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_76l1h")
+text = "Try Again"
+
+[node name="LevelCompletePanel" type="ColorRect" parent="CanvasLayer" unique_id=370209421]
+process_mode = 2
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.003921569)
+script = ExtResource("13_01go3")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/LevelCompletePanel" unique_id=2146061508]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/LevelCompletePanel/CenterContainer" unique_id=526245732]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vupbn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer" unique_id=1814133154]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1607876516]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+text = "ROOM CLEAN"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=1429511917]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+text = "The room feels lighter now. Let's keep going.
+Ready for the next room?"
+horizontal_alignment = 1
+
+[node name="NextLevelButton" type="Button" parent="CanvasLayer/LevelCompletePanel/CenterContainer/PanelContainer/VBoxContainer" unique_id=987287259]
+custom_minimum_size = Vector2(180, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_colors/font_hover_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2060p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1yst4")
+text = "Next Room
+"
+
+[node name="JournalPopup" type="Panel" parent="CanvasLayer" unique_id=1482656870]
+process_mode = 2
+visible = false
+offset_right = 774.0
+offset_bottom = 598.0
+script = ExtResource("14_atwgk")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/JournalPopup" unique_id=509840253]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.25
+offset_top = -275.25198
+offset_right = 223.25
+offset_bottom = 275.25198
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_104fb")
+expand_mode = 1
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/JournalPopup" unique_id=1606742533]
+process_mode = 2
+visible = false
+layout_mode = 0
+offset_left = 585.0
+offset_top = 3.0
+offset_right = 630.0
+offset_bottom = 48.0
+icon = ExtResource("16_104fb")
+flat = true
+expand_icon = true
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1966675947]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DarkBg" type="ColorRect" parent="CanvasLayer/PauseMenu" unique_id=1564288710]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.57254905)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu" unique_id=1555249977]
+layout_mode = 0
+offset_right = 780.0
+offset_bottom = 597.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Panel" unique_id=64277343]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -54.5
+offset_right = 95.0
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=508926096]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_m8set")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d3tkx")
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1704421730]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_m8set")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d3tkx")
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1443765960]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5411765, 0.2, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_m8set")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d3tkx")
+text = "Main Menu"
+
+[node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=2070014811]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -54.0
+offset_top = 5.0
+offset_right = -6.0
+offset_bottom = 52.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.5411765, 0.2509804, 0.019607844, 1)
+theme_override_colors/font_hover_color = Color(0.9529412, 0.7882353, 0.58431375, 1)
+theme_override_fonts/font = ExtResource("10_m8set")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwgkd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r2mh0")
+text = "| |"
+
+[node name="Journal" type="Area2D" parent="." unique_id=910256523]
+z_index = -1
+position = Vector2(5, 3)
+scale = Vector2(1, 0.9931919)
+script = ExtResource("16_m8set")
+
+[node name="Sprite2D" type="Sprite2D" parent="Journal" unique_id=1209896594]
+position = Vector2(111.5, 478.07477)
+scale = Vector2(0.030410191, 0.02692524)
+texture = ExtResource("15_104fb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Journal" unique_id=949730029]
+position = Vector2(111.5, 478.03546)
+shape = SubResource("RectangleShape2D_dwgkd")
+
+[connection signal="pressed" from="Care button/Care" to="." method="_on_care_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Mop" to="." method="_on_mop_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Trash" to="." method="_on_trash_pressed"]

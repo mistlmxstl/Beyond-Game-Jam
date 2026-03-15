@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbnbcegr6rvgo"
-path="res://.godot/imported/Heart (Empty).png-05bef6b51c60166d632163720cd64d80.ctex"
+uid="uid://fpi3dvsw3m0o"
+path="res://.godot/imported/How to Play.png-af111d2dbfae66a0ebf961bd3e53cc6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/Heart (Empty).png"
-dest_files=["res://.godot/imported/Heart (Empty).png-05bef6b51c60166d632163720cd64d80.ctex"]
+source_file="res://Assets/UI/Title/How to Play.png"
+dest_files=["res://.godot/imported/How to Play.png-af111d2dbfae66a0ebf961bd3e53cc6a.ctex"]
 
 [params]
 
