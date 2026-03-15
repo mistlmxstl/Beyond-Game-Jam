@@ -12,7 +12,7 @@ extends Node2D
 
 @onready var level_complete_panel: LevelCompletePanel = $CanvasLayer/LevelCompletePanel
 
-const NEXT_LEVEL_PATH: String = "res://Levels/level_2.tscn"
+const NEXT_LEVEL_SCENE := preload("res://Levels/level 2.tscn")
 
 const CARE_FLICKER_START: float = 50.0
 const CARE_LOCK_DISTORTED: float = 15.0
@@ -62,6 +62,7 @@ func _ready() -> void:
 		game_over_panel.try_again_pressed.connect(_on_try_again_pressed)
 	
 	if level_complete_panel != null:
+		level_complete_panel.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 		level_complete_panel.hide_panel()
 		level_complete_panel.next_level_pressed.connect(_on_next_level_pressed)
 
@@ -148,6 +149,7 @@ func _show_notification(message: String) -> void:
 	tween.tween_property(tool_notification, "modulate:a", 0.0, 0.5)
 
 func _on_level_completed() -> void:
+	print("LEVEL COMPLETED")
 	Input.set_custom_mouse_cursor(null)
 
 	tool_notification.visible = false
@@ -158,9 +160,15 @@ func _on_level_completed() -> void:
 
 	get_tree().paused = true
 
+
 func _on_next_level_pressed() -> void:
+	print("NEXT LEVEL SIGNAL RECEIVED")
 	get_tree().paused = false
-	get_tree().change_scene_to_file(NEXT_LEVEL_PATH)
+	call_deferred("_go_to_next_level")
+
+func _go_to_next_level() -> void:
+	var err := get_tree().change_scene_to_packed(NEXT_LEVEL_SCENE)
+	print("CHANGE SCENE RESULT: ", err)
 
 func _on_care_changed(current_care: float, max_care: float, distortion_strength: float, chaos_strength: float) -> void:
 	care_bar.max_value = max_care
