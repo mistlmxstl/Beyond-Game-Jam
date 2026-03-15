@@ -9,7 +9,8 @@ extends Node2D
 
 @onready var normal_room: Node2D = $Environment
 @onready var distorted_room: Node2D = $DistortedEnvironment
-
+@onready var journal_popup = $CanvasLayer/JournalPopup
+@onready var close_button = $CanvasLayer/JournalPopup/CloseButton
 @onready var level_complete_panel: LevelCompletePanel = $CanvasLayer/LevelCompletePanel
 
 # CHANGE THIS to the real next scene
@@ -82,6 +83,21 @@ func _ready() -> void:
 
 	_on_tool_changed(game_manager.current_tool)
 	tool_notification.text = ""
+	journal_popup.hide()
+	$CanvasLayer.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	journal_popup.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	close_button.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	journal_popup.mouse_filter = Control.MOUSE_FILTER_STOP
+	close_button.mouse_filter = Control.MOUSE_FILTER_STOP
+	close_button.pressed.connect(_on_close_pressed)
+	
+func show_journal():
+	journal_popup.show()
+	get_tree().paused = true
+
+func _on_close_pressed():
+	get_tree().paused = false
+	journal_popup.hide()
 
 func _process(delta: float) -> void:
 	if care_popup.is_open():

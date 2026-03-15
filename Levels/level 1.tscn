@@ -10,9 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://1ll0o2l4sd0x" path="res://Assets/UI/Mop button.png" id="6_bu6x3"]
 [ext_resource type="PackedScene" uid="uid://dk7x2i6d6ckl5" path="res://Assets/Water/Water.tscn" id="7_bu6x3"]
 [ext_resource type="Texture2D" uid="uid://pjphrxf48qh1" path="res://Assets/UI/Heart (full).png" id="10_365w1"]
-[ext_resource type="Script" path="res://Levels/care_popup.gd" id="11_n48tk"]
-[ext_resource type="Script" path="res://Levels/game_over_panel.gd" id="12_qfol3"]
+[ext_resource type="Script" uid="uid://dp3pe4a045d8p" path="res://Levels/care_popup.gd" id="11_n48tk"]
+[ext_resource type="Script" uid="uid://dsyt1ym73de5v" path="res://Levels/game_over_panel.gd" id="12_qfol3"]
 [ext_resource type="Script" uid="uid://q02ixgdtuiaa" path="res://Levels/level_complete_panel.gd" id="13_01go3"]
+[ext_resource type="Script" uid="uid://vmxd7p6ffs16" path="res://Levels/journal_popup.gd" id="14_atwgk"]
+[ext_resource type="Texture2D" uid="uid://bd6xpqiiupui8" path="res://Assets/Bedroom/Journal_bedroom.png" id="15_104fb"]
+[ext_resource type="Script" uid="uid://bqool75s6iqcm" path="res://Levels/journal.gd" id="16_m8set"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n48tk"]
 bg_color = Color(0.64929366, 0.53113973, 0.4508716, 1)
@@ -27,6 +30,9 @@ expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01go3"]
 bg_color = Color(0.8901961, 0.21960784, 0.21960784, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgkd"]
+size = Vector2(44, 57)
 
 [node name="Level 1" type="Node2D" unique_id=740281537]
 script = ExtResource("1_p48sa")
@@ -267,6 +273,7 @@ mouse_filter = 2
 texture = ExtResource("2_7moo8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1416021520]
+process_mode = 2
 
 [node name="ToolNotification" type="Label" parent="CanvasLayer" unique_id=1249465842]
 visible = false
@@ -411,6 +418,43 @@ custom_minimum_size = Vector2(180, 44)
 layout_mode = 2
 text = "Next Room
 "
+
+[node name="JournalPopup" type="Panel" parent="CanvasLayer" unique_id=1482656870]
+process_mode = 2
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("14_atwgk")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/JournalPopup" unique_id=509840253]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 140.0
+offset_right = 535.0
+offset_bottom = 447.0
+texture = ExtResource("15_104fb")
+expand_mode = 1
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/JournalPopup" unique_id=1606742533]
+process_mode = 2
+layout_mode = 0
+offset_left = 503.0
+offset_top = 140.0
+offset_right = 538.0
+offset_bottom = 171.0
+text = "X"
+
+[node name="Journal" type="Area2D" parent="." unique_id=910256523]
+script = ExtResource("16_m8set")
+
+[node name="Sprite2D" type="Sprite2D" parent="Journal" unique_id=1209896594]
+position = Vector2(106.25001, 471.5)
+scale = Vector2(0.037835926, 0.033499997)
+texture = ExtResource("15_104fb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Journal" unique_id=949730029]
+position = Vector2(107, 471.5)
+shape = SubResource("RectangleShape2D_dwgkd")
 
 [connection signal="pressed" from="Care button/Care" to="." method="_on_care_pressed"]
 [connection signal="pressed" from="Cleaning tools buttons/Mop" to="." method="_on_mop_pressed"]
